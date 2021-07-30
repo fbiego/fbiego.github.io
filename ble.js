@@ -30,6 +30,7 @@ async function scanDevice(){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(s));
   			li.addEventListener('click', function(){
+  				navigator.clipboard.writeText('Copied ' + s + ' to clipboard');
   				window.alert(s);
   			}, false);
 	  		config.appendChild(li);
