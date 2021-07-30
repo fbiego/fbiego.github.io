@@ -6,7 +6,7 @@ let scanAlert = document.querySelector('#outputText');
 
 
 
-function scanDevice(){
+async function scanDevice(){
 	let options = {};
 	options.acceptAllDevices = true;
 
@@ -19,3 +19,5 @@ function scanDevice(){
 	});
 
 }
+
+scanButton.addEventListener('click', scanDevice);
