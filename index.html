@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html class="flx-animate-left">
+   <head>
+      <title>BLE Demo</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="flx.css">
+      <style type="text/css">a {text-decoration:none}</style>
+	  <script type = "text/javascript" src="ble.js"></script>
+   </head>
+   <body>
+      
+      <div class="flx-container">
+         <h4>BLE Devices</h4>
+		 
+		 <button id="startButton" onclick="scanDevice()" class="flx-button flx-bar-item flx-round-xlarge flx-large flx-text-white flx-blue">Scan</button>
+		 <button id="stopButton" class="flx-button flx-bar-item flx-round-xlarge flx-large flx-text-white flx-red">Stop</button>
+         
+      </div>
+	  <div class="flx-container">
+         <h4>Output</h4>
+         <div class="flx-row flx-card-4 flx-round-xlarge">
+            <p class="flx-margin" id="outputText"> Scan ble devices </p>
+         </div>
+      </div>
+      <div class="flx-container">
+         <h4>Devices</h4>
+         <ul class="flx-ul flx-card-4 flx-round-xlarge">
+		 </ul>
+      </div>
+   </body>
+</html>
