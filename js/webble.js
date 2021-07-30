@@ -10,6 +10,10 @@ const SCAN_OPTIONS = {
     keepRepeatedDevices: true
 };
 
+let options = {
+    acceptAllDevices : true
+};
+
 
 // DOM elements
 let scanButton = document.querySelector('#scanButton');
@@ -21,7 +25,8 @@ let devicestbody = document.querySelector('#devicestbody');
 // Attempt to run the experimental requestLEScan function
 async function scanForAdvertisements() {
   try {
-    const scan = await navigator.bluetooth.requestLEScan(SCAN_OPTIONS);
+    //const scan = await navigator.bluetooth.requestLEScan(SCAN_OPTIONS);
+    const scan = await navigator.bluetooth.requestDevice(options);
     let numberOfEvents = 0;
     scanButton.textContent = 'Scanning...';
     scanButton.setAttribute('class', 'btn btn-outline-dark');
