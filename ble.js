@@ -4,13 +4,16 @@ let scanButton = document.querySelector('#scanButton');
 let stopButton = document.querySelector('#stopButton');
 let scanAlert = document.querySelector('#outputText');
 
+let optionalServices = ['fb1e4001-54ae-4a28-9f74-dfccb248601d']
+
 
 
 async function scanDevice(){
 	try {
 		scanAlert.textContent = 'Scanning...';
 		let options = {
-			acceptAllDevices : true
+			acceptAllDevices : true,
+			optionalServices: optionalServices
 		};
 		
 
