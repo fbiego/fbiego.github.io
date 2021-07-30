@@ -26,7 +26,7 @@ async function scanDevice(){
 		const val = await read_val.readValue();
 		const str = new TextDecoder().decode(val).split(",");
 
-		for (const s in str){
+		for (const s of str){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(s));
   			config.appendChild(li);
