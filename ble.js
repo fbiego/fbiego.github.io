@@ -35,7 +35,7 @@ async function scanDevice(){
 		//scanAlert.textContent = sers;
 	}
 	catch(error)  {
-		//scanAlert.textContent = 'Argh! ' + error;
+		scanAlert.textContent = 'Argh! ' + error;
   	}
 }
 
