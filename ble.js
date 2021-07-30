@@ -7,7 +7,9 @@ let scanAlert = document.querySelector('#outputText');
 
 
 async function scanDevice(){
-	let options = {};
+
+	try {
+			let options = {};
 	options.acceptAllDevices = true;
 
 	navigator.bluetooth.requestDevice(options)
@@ -17,6 +19,11 @@ async function scanDevice(){
 	.catch(error => {
 		scanAlert.textContent = 'Argh! ' + error;
 	});
+	}
+	catch(error)  {
+		scanAlert.textContent = 'Argh! ' + error;
+  }
+
 
 }
 
