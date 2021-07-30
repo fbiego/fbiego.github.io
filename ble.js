@@ -23,6 +23,7 @@ async function scanDevice(){
 		const main_service = await server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e');
 		const read_val = await main_service.getCharacteristic('6e400003-b5a3-f393-e0a9-e50e24dcca9e')
 		read_val.addEventListener('characteristicvaluechanged', handleReadValue);
+		read_val.startNotifications();
 
 		let sers = '';
 		for (const service of services) {
