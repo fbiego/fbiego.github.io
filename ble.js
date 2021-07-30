@@ -8,6 +8,7 @@ let scanAlert = document.querySelector('#outputText');
 
 async function scanDevice(){
 
+	scanAlert.textContent = 'Scanning...';
 	try {
 		scanAlert.textContent = 'Scanning...';
 		let options = {};
@@ -15,7 +16,7 @@ async function scanDevice(){
 
 		const scan = await navigator.bluetooth.requestDevice(options)
 		.then(device => {
-			scanAlert.textContent ='> Name:             ' + device.name + '\n> Id:               ' + device.id +'\n> Connected:        ' + device.gatt.connected;
+			scanAlert.textContent = 'Name: ' + device.name + '\nId: ' + device.id +'\nConnected: ' + device.gatt.connected;
 		})
 		.catch(error => {
 			scanAlert.textContent = 'Argh! ' + error;
