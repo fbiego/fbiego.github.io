@@ -4,7 +4,7 @@ let scanButton = document.querySelector('#scanButton');
 let stopButton = document.querySelector('#stopButton');
 let scanAlert = document.querySelector('#outputText');
 
-let optionalServices = ['fb1e4001-54ae-4a28-9f74-dfccb248601d']
+let optionalServices = ['6e400001-b5a3-f393-e0a9-e50e24dcca9e']
 
 
 
@@ -20,6 +20,10 @@ async function scanDevice(){
 		const device = await navigator.bluetooth.requestDevice(options);
 		const server = await device.gatt.connect();
 		const services = await server.getPrimaryServices();
+		const main_service = await server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e');
+		const read_val = await main_service.getCharacteristic('6e400003-b5a3-f393-e0a9-e50e24dcca9e')
+		read_val.addEventListener('characteristicvaluechanged', handleReadValue);
+
 		let sers = '';
 		for (const service of services) {
 			const characteristics = await service.getCharacteristics();
@@ -27,14 +31,18 @@ async function scanDevice(){
 				sers += characteristic.uuid + ' ' + getSupportedProperties(characteristic);
 			});
 		}
-		scanAlert.textContent = sers;
+		//scanAlert.textContent = sers;
 	}
 	catch(error)  {
-		scanAlert.textContent = 'Argh! ' + error;
+		//scanAlert.textContent = 'Argh! ' + error;
   	}
-
-
 }
+
+function handleReadValue(event) {
+  let string = event.target.value;
+  scanAlert.textContent = 'Read: ' + string;
+}
+
 
 function getSupportedProperties(characteristic) {
   let supportedProperties = [];
