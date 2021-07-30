@@ -3,6 +3,7 @@
 let scanButton = document.querySelector('#scanButton');
 let stopButton = document.querySelector('#stopButton');
 let scanAlert = document.querySelector('#outputText');
+let config = document.querySelector('#config');
 
 let optionalServices = ['6e400001-b5a3-f393-e0a9-e50e24dcca9e']
 
@@ -23,9 +24,15 @@ async function scanDevice(){
 		const main_service = await server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e');
 		const read_val = await main_service.getCharacteristic('6e400003-b5a3-f393-e0a9-e50e24dcca9e')
 		const val = await read_val.readValue();
-		const str = new TextDecoder().decode(val).split(",")[9];
+		const str = new TextDecoder().decode(val).split(",");
 
-		scanAlert.textContent = 'Value: ' + str;
+		for (const s in str){
+			var li = document.createElement("li");
+  			li.appendChild(document.createTextNode(s));
+  			config.appendChild(li);
+  		}
+
+		scanAlert.textContent = 'Value: ' + str[9];
 		let sers = '';
 		for (const service of services) {
 			const characteristics = await service.getCharacteristics();
