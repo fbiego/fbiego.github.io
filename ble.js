@@ -21,10 +21,9 @@ async function scanDevice(){
 		const server = await device.gatt.connect();
 		const services = await server.getPrimaryServices();
 		const main_service = await server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e');
-		const read_val = await main_service.getCharacteristic('6e400003-b5a3-f393-e0a9-e50e24dcca9e');
-		read_val.addEventListener('characteristicvaluechanged', handleReadValue);
-		read_val.startNotifications();
+		const read_val = await main_service.getCharacteristic('6e400003-b5a3-f393-e0a9-e50e24dcca9e').readValue();
 
+		scanAlert.textContent = 'Value: ' + read_val;
 		let sers = '';
 		for (const service of services) {
 			const characteristics = await service.getCharacteristics();
@@ -39,10 +38,6 @@ async function scanDevice(){
   	}
 }
 
-function handleReadValue(event) {
-  let string = event.target.value;
-  scanAlert.textContent = 'Read: ' + string;
-}
 
 
 function getSupportedProperties(characteristic) {
