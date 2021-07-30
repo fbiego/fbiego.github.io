@@ -16,7 +16,7 @@ async function scanDevice(){
 
 		const scan = await navigator.bluetooth.requestDevice(options)
 		.then(device => {
-			scanAlert.textContent = 'Name: ' + device.name + '\nId: ' + device.id +'\nConnected: ' + device.gatt.connected;
+			scanAlert.textContent = 'Name: ' + device.name + ' Id: ' + device.id + ' Connected: ' + device.gatt.connected;
 		})
 		.catch(error => {
 			scanAlert.textContent = 'Argh! ' + error;
