@@ -29,8 +29,7 @@ async function scanDevice(){
 		for (const s of str){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(s));
-  			li.addEventListener('click', copyClip, false);
-			li.myParam = s;
+  			li.addEventListener('click', copyClip(s));
 	  		config.appendChild(li);
   		}
 
@@ -50,7 +49,7 @@ async function scanDevice(){
 }
 
 function copyClip(e) {
-	window.alert(e.currentTarget.myParam);
+	window.alert(e);
 }
 
 
