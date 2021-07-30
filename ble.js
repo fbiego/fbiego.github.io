@@ -28,7 +28,7 @@ async function scanDevice(){
 			const characteristics = await service.getCharacteristics();
 			characteristics.forEach(characteristic => {
 				sers += characteristic.uuid + ' ' + getSupportedProperties(characteristic);
-			}
+			});
 		}
 		scanAlert.textContent = sers;
 	}
