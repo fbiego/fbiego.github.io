@@ -26,7 +26,15 @@ let devicestbody = document.querySelector('#devicestbody');
 async function scanForAdvertisements() {
   try {
     //const scan = await navigator.bluetooth.requestLEScan(SCAN_OPTIONS);
-    const scan = await navigator.bluetooth.requestDevice(options);
+    const scan = await navigator.bluetooth.requestDevice(options)
+    .then(device => {
+     log('> Name:             ' + device.name);
+     log('> Id:               ' + device.id);
+     log('> Connected:        ' + device.gatt.connected);
+   })
+   .catch(error => {
+    log('Argh! ' + error);
+   });
     let numberOfEvents = 0;
     scanButton.textContent = 'Scanning...';
     scanButton.setAttribute('class', 'btn btn-outline-dark');
