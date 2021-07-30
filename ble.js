@@ -29,7 +29,15 @@ async function scanDevice(){
 		for (const s of str){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(s));
-  			config.appendChild(li);
+  			li.addEventListener('click', function (e) {
+			    e.preventDefault();
+    			if (e.clipboardData) {
+        			e.clipboardData.setData('text/plain', s);
+    			} else if (window.clipboardData) {
+        			window.clipboardData.setData('Text', s);
+    			}
+			});
+	  		config.appendChild(li);
   		}
 
 		scanAlert.textContent = 'Value: ' + str[9];
