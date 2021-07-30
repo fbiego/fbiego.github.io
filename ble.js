@@ -14,13 +14,7 @@ async function scanDevice(){
 		};
 		
 
-		const device = await navigator.bluetooth.requestDevice(options)
-		.then(device => {
-			scanAlert.textContent = 'Name: ' + device.name + ' Id: ' + device.id + ' Connected: ' + device.gatt.connected;
-		})
-		.catch(error => {
-			scanAlert.textContent = 'Argh! ' + error;
-		});
+		const device = await navigator.bluetooth.requestDevice(options);
 		const server = await device.gatt.connect();
 		const services = await server.getPrimaryServices();
 		let sers = '';
