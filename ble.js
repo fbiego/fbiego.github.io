@@ -21,9 +21,10 @@ async function scanDevice(){
 		const server = await device.gatt.connect();
 		const services = await server.getPrimaryServices();
 		const main_service = await server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e');
-		const read_val = await main_service.getCharacteristic('6e400003-b5a3-f393-e0a9-e50e24dcca9e').readValue();
+		const read_val = await main_service.getCharacteristic('6e400003-b5a3-f393-e0a9-e50e24dcca9e')
+		const val = await read_val.readValue();
 
-		scanAlert.textContent = 'Value: ' + read_val;
+		scanAlert.textContent = 'Value: ' + val;
 		let sers = '';
 		for (const service of services) {
 			const characteristics = await service.getCharacteristics();
