@@ -28,12 +28,16 @@ async function scanForAdvertisements() {
     //const scan = await navigator.bluetooth.requestLEScan(SCAN_OPTIONS);
     const scan = await navigator.bluetooth.requestDevice(options)
     .then(device => {
-     log('> Name:             ' + device.name);
-     log('> Id:               ' + device.id);
-     log('> Connected:        ' + device.gatt.connected);
+     //log('> Name:             ' + device.name);
+     //log('> Id:               ' + device.id);
+     //log('> Connected:        ' + device.gatt.connected);
+     scanAlert.textContent = 'Name: ' + device.name + 'Id: ' + device.id+ 'Con: '+ device.gatt.connected;
+    scanAlert.removeAttribute('hidden');
    })
    .catch(error => {
-    log('Argh! ' + error);
+    //log('Argh! ' + error);
+       scanAlert.textContent = 'Argh! ' + error;
+    scanAlert.removeAttribute('hidden');
    });
     let numberOfEvents = 0;
     scanButton.textContent = 'Scanning...';
