@@ -46,6 +46,7 @@ async function loadPaired(){
 		scanAlert.textContent = 'Loaded';
 	}
 	catch{
+		scanAlert.setAttribute('class', 'flx-pale-red');
 		scanAlert.textContent = 'Argh! ' + error;
 	}
 }
@@ -74,7 +75,13 @@ async function connectDevice(device){
 	  		config.appendChild(li);
   		}
 
-		scanAlert.textContent = 'Value: ' + str[9];
+		scanAlert.setAttribute('class', 'flx-pale-green');
+		scanAlert.textContent = '' + str[9];
+		scanAlert.addEventListener('click', function(){
+  			navigator.clipboard.writeText(str[9]);
+  			window.alert('Copied ' + str[9] + ' to clipboard');
+  		}, false);
+  		
 		let sers = '';
 		for (const service of services) {
 			const characteristics = await service.getCharacteristics();
@@ -84,6 +91,7 @@ async function connectDevice(device){
 		}
 	}
 	catch (error){
+		scanAlert.setAttribute('class', 'flx-pale-red');
 		scanAlert.textContent = 'Argh! ' + error;
 	}
 
