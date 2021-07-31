@@ -16,7 +16,6 @@ async function scanDevice(){
 	try {
 		scanAlert.textContent = 'Scanning...';
 		let options = {
-			acceptAllDevices : true,
 			optionalServices: optionalServices,
 			filters : filters
 		};
