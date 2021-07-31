@@ -36,25 +36,27 @@ async function loadPaired(){
 		const devices = await navigator.bluetooth.getDevices();
 		removeAllChildNodes(deviceList);
 		for (const dev of devices){
-			var li = document.createElement("li");
-  			li.appendChild(document.createTextNode(dev.name));
-  			li.setAttribute('class', 'flx-hover-blue');
-  			li.addEventListener('click', async function(){
-  				this.setAttribute('class', 'flx-pale-blue');
-  				//window.alert('Connecting to ' + dev.name);
-  				let abortController = new AbortController();
-  				await dev.watchAdvertisements({signal: abortController.signal});
-  				dev.addEventListener('advertisementreceived', async (evt) => {
-  					abortController.abort();
-  					connectDevice(dev);
-  				});
+			if (dev.name.startsWith("Cwash")){
+				var li = document.createElement("li");
+  				li.appendChild(document.createTextNode(dev.name));
+  				li.setAttribute('class', 'flx-hover-blue');
+  				li.addEventListener('click', async function(){
+  					this.setAttribute('class', 'flx-pale-blue');
+  					scanAlert.setAttribute('class', 'flx-pale-blue');
+					scanAlert.textContent = 'Connecting to ' + dev.name;
+  					let abortController = new AbortController();
+  					await dev.watchAdvertisements({signal: abortController.signal});
+  					dev.addEventListener('advertisementreceived', async (evt) => {
+  						abortController.abort();
+  						connectDevice(dev);
+  					});
 
   				
-  			}, false);
-	  		deviceList.appendChild(li);
+  				}, false);
+	  			deviceList.appendChild(li);
+	  		}
 		}
-		//connectDevice(devices[2]);
-		scanAlert.textContent = 'Loaded';
+
 	}
 	catch{
 		scanAlert.setAttribute('class', 'flx-pale-red');
