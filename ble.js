@@ -32,6 +32,7 @@ async function scanDevice(){
 async function loadPaired(){
 	try {
 		const devices = await navigator.bluetooth.getDevices();
+		removeAllChildNodes(deviceList);
 		for (const dev of devices){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(dev.name));
@@ -57,6 +58,8 @@ async function connectDevice(device){
 		const val = await read_val.readValue();
 		const str = new TextDecoder().decode(val).split(",");
 
+
+		removeAllChildNodes(config);
 		for (const s of str){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(s));
@@ -80,6 +83,12 @@ async function connectDevice(device){
 		scanAlert.textContent = 'Argh! ' + error;
 	}
 
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
 
 
