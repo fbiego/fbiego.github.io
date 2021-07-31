@@ -20,7 +20,7 @@ let filters = [{namePrefix: 'Cwash'}];
 
 async function scanDevice(){
 	try {
-		cardAlert.setAttribute('class', 'flx-card-4 flx-pale-blue');
+		cardAlert.setAttribute('class', 'flx-container flx-card-4 flx-margin flx-pale-blue');
 		scanAlert.textContent = 'Scanning...';
 		let options = {
 			optionalServices: optionalServices,
@@ -34,7 +34,7 @@ async function scanDevice(){
 		
 	}
 	catch(error)  {
-		cardAlert.setAttribute('class', 'flx-card-4 flx-pale-red');
+		cardAlert.setAttribute('class', 'flx-container flx-card-4 flx-margin flx-pale-red');
 		scanAlert.textContent = 'Argh! ' + error;
   	}
 }
@@ -50,7 +50,7 @@ async function loadPaired(){
   				li.setAttribute('class', 'flx-hover-blue');
   				li.addEventListener('click', async function(){
   					this.setAttribute('class', 'flx-pale-blue');
-  					scanAlert.setAttribute('class', 'flx-pale-blue');
+  					cardAlert.setAttribute('class', 'flx-container flx-card-4 flx-margin flx-pale-blue');
 					scanAlert.textContent = 'Connecting to ' + dev.name;
   					let abortController = new AbortController();
   					await dev.watchAdvertisements({signal: abortController.signal});
@@ -67,7 +67,7 @@ async function loadPaired(){
 
 	}
 	catch{
-		cardAlert.setAttribute('class', 'flx-card-4 flx-pale-red');
+		cardAlert.setAttribute('class', 'flx-container flx-card-4 flx-margin flx-pale-red');
 		scanAlert.textContent = 'Argh! ' + error;
 	}
 }
@@ -103,12 +103,12 @@ async function connectDevice(device){
   			navigator.clipboard.writeText(str[9]);
   			window.alert('Copied ' + str[9] + ' to clipboard');
   		}, false);
-  		cardAlert.setAttribute('class', 'flx-card-4 flx-pale-green');
+  		cardAlert.setAttribute('class', 'flx-container flx-card-4 flx-margin flx-pale-green');
 		scanAlert.textContent = 'Data read success';
 
 	}
 	catch (error){
-		cardAlert.setAttribute('class', 'flx-card-4 flx-pale-red');
+		cardAlert.setAttribute('class', 'flx-container flx-card-4 flx-margin flx-pale-red');
 		scanAlert.textContent = 'Argh! ' + error;
 	}
 
