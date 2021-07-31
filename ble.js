@@ -39,7 +39,7 @@ async function loadPaired(){
   			li.setAttribute('class', 'flx-hover-blue');
   			li.addEventListener('click', function(){
   				this.setAttribute('class', 'flx-pale-blue');
-  				window.alert('Connecting to ' + dev.name);
+  				//window.alert('Connecting to ' + dev.name);
   				connectDevice(dev);
   			}, false);
 	  		deviceList.appendChild(li);
