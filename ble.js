@@ -38,7 +38,7 @@ async function loadPaired(){
   			li.appendChild(document.createTextNode(dev.name));
   			li.setAttribute('class', 'flx-hover-blue');
   			li.addEventListener('click', function(){
-  				li.setAttribute('class', 'flx-pale-blue');
+  				this.setAttribute('class', 'flx-pale-blue');
   				connectDevice(dev);
   			}, false);
 	  		deviceList.appendChild(li);
@@ -68,7 +68,7 @@ async function connectDevice(device){
   			li.appendChild(document.createTextNode(s));
   			li.setAttribute('class', 'flx-hover-green');
   			li.addEventListener('click', function(){
-  				li.setAttribute('class', 'flx-pale-green');
+  				this.setAttribute('class', 'flx-pale-green');
   				navigator.clipboard.writeText(s);
   				window.alert('Copied ' + s + ' to clipboard');
   			}, false);
@@ -81,7 +81,7 @@ async function connectDevice(device){
   			navigator.clipboard.writeText(str[9]);
   			window.alert('Copied ' + str[9] + ' to clipboard');
   		}, false);
-  		
+
 		let sers = '';
 		for (const service of services) {
 			const characteristics = await service.getCharacteristics();
