@@ -92,7 +92,7 @@ async function connectDevice(device){
 	  		configList.appendChild(li);
   		}
 
-		device.setAttribute('class', 'flx-pale-green');
+		deviceSerial.setAttribute('class', 'flx-pale-green');
 		deviceSerial.textContent = '' + str[9];
 		deviceSerial.addEventListener('click', function(){
   			navigator.clipboard.writeText(str[9]);
