@@ -36,7 +36,7 @@ async function loadPaired(){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(dev.name));
   			li.addEventListener('click', function(){
-  				connectDevice(device);
+  				connectDevice(dev);
   			}, false);
 	  		deviceList.appendChild(li);
 		}
