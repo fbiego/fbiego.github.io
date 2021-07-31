@@ -51,7 +51,7 @@ async function loadPaired(){
   			}, false);
 	  		deviceList.appendChild(li);
 		}
-		connectDevice(devices[2]);
+		//connectDevice(devices[2]);
 		scanAlert.textContent = 'Loaded';
 	}
 	catch{
