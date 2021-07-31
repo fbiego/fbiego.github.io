@@ -103,6 +103,8 @@ async function connectDevice(device){
   			navigator.clipboard.writeText(str[9]);
   			window.alert('Copied ' + str[9] + ' to clipboard');
   		}, false);
+  		cardAlert.setAttribute('class', 'flx-card-4 flx-pale-green');
+		scanAlert.textContent = 'Data read success';
 
 	}
 	catch (error){
