@@ -23,7 +23,6 @@ async function scanDevice(){
 
 		connectDevice(device);
 		
-		//scanAlert.textContent = sers;
 	}
 	catch(error)  {
 		scanAlert.textContent = 'Argh! ' + error;
@@ -36,10 +35,9 @@ async function loadPaired(){
 		for (const dev of devices){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(dev.name));
-  			// li.addEventListener('click', function(){
-  			// 	navigator.clipboard.writeText(s);
-  			// 	window.alert('Copied ' + s + ' to clipboard');
-  			// }, false);
+  			li.addEventListener('click', function(){
+  				connectDevice(device);
+  			}, false);
 	  		deviceList.appendChild(li);
 		}
 		scanAlert.textContent = 'Loaded';
