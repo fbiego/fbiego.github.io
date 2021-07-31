@@ -40,7 +40,14 @@ async function loadPaired(){
   			li.addEventListener('click', function(){
   				this.setAttribute('class', 'flx-pale-blue');
   				//window.alert('Connecting to ' + dev.name);
-  				connectDevice(dev);
+  				let abortController = new AbortController();
+  				await dev.watchAdvertisements({signal: abortController.signal});
+  				dev.addEventListener('advertisementreceived', async (evr) => {
+  					abortController.abort();
+  					connectDevice(evt.dev);
+  				});
+
+  				
   			}, false);
 	  		deviceList.appendChild(li);
 		}
