@@ -98,6 +98,7 @@ async function connectDevice(device){
 
 		//deviceSerial.setAttribute('class', 'flx-pale-green');
 		deviceSerial.textContent = '' + str[9];
+		copySerial.removeAttribute('style');
 		copySerial.addEventListener('click', function(){
   			navigator.clipboard.writeText(str[9]);
   			window.alert('Copied ' + str[9] + ' to clipboard');
