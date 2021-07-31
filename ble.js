@@ -101,7 +101,11 @@ async function connectDevice(device){
 		copySerial.removeAttribute('style');
 		copySerial.addEventListener('click', function(){
   			navigator.clipboard.writeText(str[9]);
-  			window.alert('Copied ' + str[9] + ' to clipboard');
+  			copySerial.textContent = 'Serial copied!';
+  			//window.alert('Copied ' + str[9] + ' to clipboard');
+  			setTimeout(function(){
+  				copySerial.textContent = 'Copy Serial';
+  			}, 3000);
   		}, false);
   		cardAlert.setAttribute('class', 'flx-container flx-card-4 flx-margin flx-pale-green');
 		scanAlert.textContent = 'Data read success';
