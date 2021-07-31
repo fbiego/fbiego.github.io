@@ -4,6 +4,7 @@ let scanButton = document.querySelector('#scanButton');
 let stopButton = document.querySelector('#stopButton');
 let scanAlert = document.querySelector('#outputText');
 let config = document.querySelector('#config');
+let deviceList = document.querySelector('#deviceList');
 
 let optionalServices = ['6e400001-b5a3-f393-e0a9-e50e24dcca9e']
 
@@ -19,6 +20,37 @@ async function scanDevice(){
 		
 
 		const device = await navigator.bluetooth.requestDevice(options);
+
+		connectDevice(device);
+		
+		//scanAlert.textContent = sers;
+	}
+	catch(error)  {
+		scanAlert.textContent = 'Argh! ' + error;
+  	}
+}
+
+async function loadPaired(){
+	try {
+		const devices = await navigator.bluetooth.getDevices();
+		for (const dev of devices){
+			var li = document.createElement("li");
+  			li.appendChild(document.createTextNode(dev.name));
+  			// li.addEventListener('click', function(){
+  			// 	navigator.clipboard.writeText(s);
+  			// 	window.alert('Copied ' + s + ' to clipboard');
+  			// }, false);
+	  		deviceList.appendChild(li);
+		}
+	}
+	catch{
+		scanAlert.textContent = 'Argh! ' + error;
+	}
+}
+
+async function connectDevice(device){
+
+	try {
 		const server = await device.gatt.connect();
 		const services = await server.getPrimaryServices();
 		const main_service = await server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e');
@@ -44,11 +76,11 @@ async function scanDevice(){
 				sers += characteristic.uuid + ' ' + getSupportedProperties(characteristic);
 			});
 		}
-		//scanAlert.textContent = sers;
 	}
-	catch(error)  {
+	catch (error){
 		scanAlert.textContent = 'Argh! ' + error;
-  	}
+	}
+
 }
 
 
@@ -63,3 +95,4 @@ function getSupportedProperties(characteristic) {
 }
 
 scanButton.addEventListener('click', scanDevice);
+stopButton.addEventListener('click', loadPaired);
