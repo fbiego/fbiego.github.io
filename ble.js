@@ -6,7 +6,9 @@ let scanAlert = document.querySelector('#outputText');
 let config = document.querySelector('#config');
 let deviceList = document.querySelector('#deviceList');
 
-let optionalServices = ['6e400001-b5a3-f393-e0a9-e50e24dcca9e']
+let optionalServices = ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'];
+
+let filters = [{namePrefix: 'Cwash'}];
 
 
 
@@ -15,7 +17,8 @@ async function scanDevice(){
 		scanAlert.textContent = 'Scanning...';
 		let options = {
 			acceptAllDevices : true,
-			optionalServices: optionalServices
+			optionalServices: optionalServices,
+			filters : filters
 		};
 		
 
