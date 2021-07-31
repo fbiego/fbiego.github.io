@@ -36,7 +36,9 @@ async function loadPaired(){
 		for (const dev of devices){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(dev.name));
+  			li.setAttribute('class', 'flx-hover-blue');
   			li.addEventListener('click', function(){
+  				li.setAttribute('class', 'flx-pale-blue');
   				connectDevice(dev);
   			}, false);
 	  		deviceList.appendChild(li);
@@ -63,7 +65,9 @@ async function connectDevice(device){
 		for (const s of str){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(s));
+  			li.setAttribute('class', 'flx-hover-green');
   			li.addEventListener('click', function(){
+  				li.setAttribute('class', 'flx-pale-green');
   				navigator.clipboard.writeText(s);
   				window.alert('Copied ' + s + ' to clipboard');
   			}, false);
