@@ -6,32 +6,28 @@
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
        <link rel="stylesheet" href="flx.css">
-      <style type="text/css">a {text-decoration:none}</style>
 	  
    </head>
    <body onload="loadPaired()">
-      
       <div class="flx-container">
          <h4>BLE Devices</h4>
-		 
-		 <button type="button" id="scanButton" class="flx-button flx-bar-item flx-round-xlarge flx-large flx-text-white flx-blue">Scan</button>
-		 <button type="button" id="stopButton" class="flx-button flx-bar-item flx-round-xlarge flx-large flx-text-white flx-red">Stop</button>
+         <ul class="flx-ul flx-card-4 flx-hoverable" id="deviceList">
+		 </ul>
+		 <button type="button" id="scanButton" class="flx-button flx-bar-item flx-round-xlarge flx-large flx-text-white flx-blue">Pair New Device</button>
          
       </div>
 	  <div class="flx-container">
-         <h4>Paired Devices</h4>
-         <ul class="flx-ul flx-card-4 flx-hoverable" id="deviceList">
-		 </ul>
-      </div>
-	  <div class="flx-container">
-         <h4>Output</h4>
          <div class="flx-row flx-card-4" id="outputText">
             <p class="flx-margin"> Scan ble devices </p>
          </div>
       </div>
-      <div class="flx-container">
-         <h4>Device Configuration</h4>
-         <ul class="flx-ul flx-card-4 flx-hoverable" id="config">
+	  <div class="flx-container">
+         <div class="flx-row flx-card-4" id="deviceSerial">
+            <p class="flx-margin"></p>
+         </div>
+      </div>
+      <div class="flx-container" id="deviceConfig">
+         <ul class="flx-ul flx-card-4 flx-hoverable" id="configList">
 		 </ul>
       </div>
 	  

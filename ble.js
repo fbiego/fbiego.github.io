@@ -3,11 +3,16 @@
 let scanButton = document.querySelector('#scanButton');
 let stopButton = document.querySelector('#stopButton');
 let scanAlert = document.querySelector('#outputText');
-let config = document.querySelector('#config');
+let configList = document.querySelector('#configList');
+let deviceList = document.querySelector('#deviceList');
+let deviceSerial = document.querySelector('#deviceSerial');
 let deviceList = document.querySelector('#deviceList');
 
-let optionalServices = ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'];
 
+let service_uuid = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+let tx_uuid = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
+
+let optionalServices = [service_uuid];
 let filters = [{namePrefix: 'Cwash'}];
 
 
@@ -68,24 +73,24 @@ async function connectDevice(device){
 
 	try {
 		const server = await device.gatt.connect();
-		const services = await server.getPrimaryServices();
-		const main_service = await server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e');
-		const read_val = await main_service.getCharacteristic('6e400003-b5a3-f393-e0a9-e50e24dcca9e')
-		const val = await read_val.readValue();
-		const str = new TextDecoder().decode(val).split(",");
+		//const services = await server.getPrimaryServices();
+		const main_service = await server.getPrimaryService(service_uuid);
+		const tx_characteristic = await main_service.getCharacteristic(tx_uuid)
+		const tx_value = await tx_characteristic.readValue();
+		const str = new TextDecoder().decode(tx_value).split(",");
 
 
-		removeAllChildNodes(config);
+		removeAllChildNodes(configList);
 		for (const s of str){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(s));
   			li.setAttribute('class', 'flx-hover-green');
-  			li.addEventListener('click', function(){
-  				this.setAttribute('class', 'flx-pale-green');
-  				navigator.clipboard.writeText(s);
-  				window.alert('Copied ' + s + ' to clipboard');
-  			}, false);
-	  		config.appendChild(li);
+  			// li.addEventListener('click', function(){
+  			// 	this.setAttribute('class', 'flx-pale-green');
+  			// 	navigator.clipboard.writeText(s);
+  			// 	window.alert('Copied ' + s + ' to clipboard');
+  			// }, false);
+	  		configList.appendChild(li);
   		}
 
 		scanAlert.setAttribute('class', 'flx-pale-green');
@@ -95,13 +100,6 @@ async function connectDevice(device){
   			window.alert('Copied ' + str[9] + ' to clipboard');
   		}, false);
 
-		let sers = '';
-		for (const service of services) {
-			const characteristics = await service.getCharacteristics();
-			characteristics.forEach(characteristic => {
-				sers += characteristic.uuid + ' ' + getSupportedProperties(characteristic);
-			});
-		}
 	}
 	catch (error){
 		scanAlert.setAttribute('class', 'flx-pale-red');
