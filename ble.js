@@ -37,12 +37,12 @@ async function loadPaired(){
 			var li = document.createElement("li");
   			li.appendChild(document.createTextNode(dev.name));
   			li.setAttribute('class', 'flx-hover-blue');
-  			li.addEventListener('click', function(){
+  			li.addEventListener('click', async function(){
   				this.setAttribute('class', 'flx-pale-blue');
   				//window.alert('Connecting to ' + dev.name);
   				let abortController = new AbortController();
   				await dev.watchAdvertisements({signal: abortController.signal});
-  				dev.addEventListener('advertisementreceived', async (evr) => {
+  				dev.addEventListener('advertisementreceived', async (evt) => {
   					abortController.abort();
   					connectDevice(evt.dev);
   				});
