@@ -3,6 +3,7 @@
 let scanButton = document.querySelector('#scanButton');
 let stopButton = document.querySelector('#stopButton');
 let scanAlert = document.querySelector('#outputText');
+let cardAlert = document.querySelector('#outputCard');
 let configList = document.querySelector('#configList');
 let deviceList = document.querySelector('#deviceList');
 let deviceSerial = document.querySelector('#deviceSerial');
@@ -18,6 +19,7 @@ let filters = [{namePrefix: 'Cwash'}];
 
 async function scanDevice(){
 	try {
+		cardAlert.setAttribute('class', 'flx-card-4 flx-pale-blue');
 		scanAlert.textContent = 'Scanning...';
 		let options = {
 			optionalServices: optionalServices,
@@ -31,6 +33,7 @@ async function scanDevice(){
 		
 	}
 	catch(error)  {
+		cardAlert.setAttribute('class', 'flx-card-4 flx-pale-red');
 		scanAlert.textContent = 'Argh! ' + error;
   	}
 }
@@ -63,7 +66,7 @@ async function loadPaired(){
 
 	}
 	catch{
-		scanAlert.setAttribute('class', 'flx-pale-red');
+		cardAlert.setAttribute('class', 'flx-card-4 flx-pale-red');
 		scanAlert.textContent = 'Argh! ' + error;
 	}
 }
@@ -92,7 +95,7 @@ async function connectDevice(device){
 	  		configList.appendChild(li);
   		}
 
-		deviceSerial.setAttribute('class', 'flx-pale-green');
+		//deviceSerial.setAttribute('class', 'flx-pale-green');
 		deviceSerial.textContent = '' + str[9];
 		deviceSerial.addEventListener('click', function(){
   			navigator.clipboard.writeText(str[9]);
@@ -101,7 +104,7 @@ async function connectDevice(device){
 
 	}
 	catch (error){
-		scanAlert.setAttribute('class', 'flx-pale-red');
+		cardAlert.setAttribute('class', 'flx-card-4 flx-pale-red');
 		scanAlert.textContent = 'Argh! ' + error;
 	}
 
