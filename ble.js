@@ -46,7 +46,7 @@ async function loadPaired(){
   				await dev.watchAdvertisements({signal: abortController.signal});
   				dev.addEventListener('advertisementreceived', async (evt) => {
   					abortController.abort();
-  					connectDevice(evt.dev);
+  					connectDevice(dev);
   				});
 
   				
