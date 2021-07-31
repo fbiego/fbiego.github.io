@@ -6,7 +6,6 @@ let scanAlert = document.querySelector('#outputText');
 let configList = document.querySelector('#configList');
 let deviceList = document.querySelector('#deviceList');
 let deviceSerial = document.querySelector('#deviceSerial');
-let deviceList = document.querySelector('#deviceList');
 
 
 let service_uuid = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
@@ -93,9 +92,9 @@ async function connectDevice(device){
 	  		configList.appendChild(li);
   		}
 
-		scanAlert.setAttribute('class', 'flx-pale-green');
-		scanAlert.textContent = '' + str[9];
-		scanAlert.addEventListener('click', function(){
+		device.setAttribute('class', 'flx-pale-green');
+		deviceSerial.textContent = '' + str[9];
+		deviceSerial.addEventListener('click', function(){
   			navigator.clipboard.writeText(str[9]);
   			window.alert('Copied ' + str[9] + ' to clipboard');
   		}, false);
