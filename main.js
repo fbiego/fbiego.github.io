@@ -1,6 +1,6 @@
 
-let textAlert = document.querySelector('#checkText');
-let cardAlert = document.querySelector('#checkCard');
+let textCheck = document.querySelector('#checkText');
+let cardCheck = document.querySelector('#checkCard');
 
 
 async function checkBLE(){
@@ -8,17 +8,17 @@ async function checkBLE(){
     const available = await navigator.bluetooth.getAvailability();
 
     if (available){
-      cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
+      cardCheck.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
       textAlert.textContent = 'Web BLE is supported';
     } else {
-      cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
+      cardCheck.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
       textAlert.textContent = 'Web BLE is not supported';
     }
 
     
   }
   catch (error){
-    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
+    cardCheck.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
     textAlert.textContent = error;
   }
 
