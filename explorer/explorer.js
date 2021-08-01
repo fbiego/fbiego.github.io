@@ -46,7 +46,7 @@ async function connectDevice(device){
     // const tx_value = await tx_characteristic.readValue();
     // const str = new TextDecoder().decode(tx_value).split(",");
 
-      cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
     scanAlert.textContent = 'Data read success';
 
   }
