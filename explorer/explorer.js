@@ -92,19 +92,7 @@ async function connectDevice(device){
     // const tx_value = await tx_characteristic.readValue();
     // const str = new TextDecoder().decode(tx_value).split(",");
 
-    let srvs = '';
-    for (const service of services){
-
-      srvs +=  service.uuid + "\r\n";
-      const characteristics = await service.getCharacteristics();
-      for (const ch of characteristics){
-        srvs += ch.uuid + getSupportedProperties(ch) + "\r\n";
-      }
-    }
-
-    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
-    textAlert.innerText = srvs;
-
+    loadServices(services);
   }
   catch (error){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
