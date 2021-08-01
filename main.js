@@ -19,7 +19,7 @@ async function checkBLE(){
   }
   catch (error){
     cardCheck.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.innerHTML = 'Not supported <br>'+error;
+    textAlert.innerText = 'Not supported \n'+error;
   }
 
 }
