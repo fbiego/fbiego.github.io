@@ -1,3 +1,11 @@
+
+
+let scanButton = document.querySelector('#scanButton');
+let deviceList = document.querySelector('#deviceList');
+let textAlert = document.querySelector('#outputText');
+let cardAlert = document.querySelector('#outputCard');
+
+
 function myFunction(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {
