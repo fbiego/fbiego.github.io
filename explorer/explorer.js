@@ -77,7 +77,7 @@ async function loadServices(services){
       for (const ch of characteristics){
         //srvs += ch.uuid + getSupportedProperties(ch) + "\r\n";
         var li = document.createElement('li');
-        li.textContent = ch.uuid;
+        li.textContent = ch.uuid + ' ' + getSupportedProperties(ch);
         ul.appendChild(li);
       }
       demoDiv.appendChild(ul);
