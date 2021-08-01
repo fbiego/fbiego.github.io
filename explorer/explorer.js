@@ -68,10 +68,10 @@ async function connectDevice(device){
     let srvs = '';
     for (const service of services){
 
-      srvs +=  service + '<br>';
+      srvs +=  service.uuid + "<br>";
       const characteristics = await service.getCharacteristics();
       for (const ch of characteristics){
-        srvs += ch + getSupportedProperties(ch) + '<br>';
+        srvs += ch.uuid + getSupportedProperties(ch) + "<br>";
       }
     }
 
