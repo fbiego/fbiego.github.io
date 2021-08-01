@@ -63,7 +63,7 @@ async function loadServices(services){
       const s_uuid = service.uuid;
       var button = document.createElement("button");
       button.setAttribute('class', 'w3-button w3-block w3-theme-l1 w3-left-align');
-      button.setAttribute('onclick', 'myFunction('+setAttribute+')');
+      button.setAttribute('onclick', 'myFunction('+s_uuid+')');
       button.textContent = s_uuid;
 
       serviceList.appendChild(button);
@@ -73,7 +73,7 @@ async function loadServices(services){
       }
     }
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
-    textAlert.innerText = srvs;
+    textAlert.innerText = "";
 
   }
   catch (error){
