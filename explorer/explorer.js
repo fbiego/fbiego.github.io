@@ -62,7 +62,7 @@ async function loadServices(services){
     for (const service of services){
       const s_uuid = service.uuid;
       var button = document.createElement("button");
-      button.setAttribute('class', 'w3-button w3-block w3-theme-l1 w3-left-align');
+      button.setAttribute('class', 'w3-button w3-block w3-blue w3-left-align');
       button.setAttribute('onclick', 'myFunction(\''+s_uuid+'\')');
       button.textContent = s_uuid;
 
