@@ -38,7 +38,7 @@ async function loadPaired(){
 
 async function scanDevice(){
   try {
-    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl flx-pale-blue');
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
     scanAlert.textContent = 'Scanning...';
     let options = {
       optionalServices: optionalServices,
@@ -52,7 +52,7 @@ async function scanDevice(){
     
   }
   catch(error)  {
-    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl flx-pale-red');
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
     scanAlert.textContent = 'Argh! ' + error;
     }
 }
