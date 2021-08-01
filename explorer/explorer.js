@@ -59,14 +59,22 @@ async function connectDevice(device){
 
   try {
     const server = await device.gatt.connect();
-    //const services = await server.getPrimaryServices();
+    const services = await server.getPrimaryServices();
     // const main_service = await server.getPrimaryService(service_uuid);
     // const tx_characteristic = await main_service.getCharacteristic(tx_uuid)
     // const tx_value = await tx_characteristic.readValue();
     // const str = new TextDecoder().decode(tx_value).split(",");
 
+    let srvs = '';
+    for (const service of services){
+      const characteristics = await service.getCharacteristics();
+      for (const ch of characteristics){
+        srvs += getSupportedProperties(ch);
+      }
+    }
+
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
-    textAlert.textContent = 'Data read success';
+    textAlert.textContent = srvs;
 
   }
   catch (error){
@@ -74,6 +82,16 @@ async function connectDevice(device){
     textAlert.textContent = 'Argh! ' + error;
   }
 
+}
+
+function getSupportedProperties(characteristic) {
+  let supportedProperties = [];
+  for (const p in characteristic.properties) {
+    if (characteristic.properties[p] === true) {
+      supportedProperties.push(p.toUpperCase());
+    }
+  }
+  return '[' + supportedProperties.join(', ') + ']';
 }
 
 scanButton.addEventListener('click', scanDevice);
