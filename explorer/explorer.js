@@ -58,7 +58,7 @@ async function scanDevice(){
 
 async function loadServices(services){
   try {
-
+    removeAllChildNodes(serviceList);
     for (const service of services){
       const s_uuid = service.uuid;
       var button = document.createElement("button");
@@ -66,11 +66,23 @@ async function loadServices(services){
       button.setAttribute('onclick', 'myFunction('+s_uuid+')');
       button.textContent = s_uuid;
 
+      var demoDiv = document.createElement('div');
+      demoDiv.setAttribute('id', s_uuid);
+      demoDiv.setAttribute('class', 'w3-hide w3-container');
+      var ul = document.createElement('ul');
+      ul.setAttribute('class', 'w3-ul');
+
       serviceList.appendChild(button);
       const characteristics = await service.getCharacteristics();
       for (const ch of characteristics){
         //srvs += ch.uuid + getSupportedProperties(ch) + "\r\n";
+        var li = document.createElement('li');
+        li.textContent = ch.uuid;
+        ul.appendChild(li);
       }
+      demoDiv.appendChild(ul);
+      serviceList.appendChild(demoDiv);
+
     }
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
     textAlert.innerText = "";
