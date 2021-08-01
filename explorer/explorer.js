@@ -47,7 +47,7 @@ async function scanDevice(){
 
     const device = await navigator.bluetooth.requestDevice(options);
 
-    connectDevice(device);
+    //connectDevice(device);
     
   }
   catch(error)  {
