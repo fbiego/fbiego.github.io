@@ -17,7 +17,7 @@ async function loadPaired(){
       li.setAttribute('class', 'w3-hover-blue');
       li.addEventListener('click', async function(){
         this.setAttribute('class', 'w3-pale-blue');
-        cardAlert.setAttribute('class', 'w3-container w3-card-4 w3-margin w3-pale-blue');
+        cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
         scanAlert.textContent = 'Connecting to ' + dev.name;
         let abortController = new AbortController();
         await dev.watchAdvertisements({signal: abortController.signal});
@@ -31,11 +31,31 @@ async function loadPaired(){
     }
   }
   catch{
-    cardAlert.setAttribute('class', 'w3-container w3-card-4 w3-margin w3-pale-red');
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
     scanAlert.textContent = 'Argh! ' + error;
   }
 }
 
+async function connectDevice(device){
+
+  try {
+    const server = await device.gatt.connect();
+    //const services = await server.getPrimaryServices();
+    // const main_service = await server.getPrimaryService(service_uuid);
+    // const tx_characteristic = await main_service.getCharacteristic(tx_uuid)
+    // const tx_value = await tx_characteristic.readValue();
+    // const str = new TextDecoder().decode(tx_value).split(",");
+
+      cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
+    scanAlert.textContent = 'Data read success';
+
+  }
+  catch (error){
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
+    scanAlert.textContent = 'Argh! ' + error;
+  }
+
+}
 
 
 function removeAllChildNodes(parent) {
