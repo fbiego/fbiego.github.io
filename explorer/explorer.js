@@ -4,7 +4,7 @@ let scanButton = document.querySelector('#scanButton');
 let deviceList = document.querySelector('#deviceList');
 let textAlert = document.querySelector('#outputText');
 let cardAlert = document.querySelector('#outputCard');
-
+let serviceList = document.querySelector('#services');
 
 
 async function loadPaired(){
@@ -55,6 +55,33 @@ async function scanDevice(){
     textAlert.textContent = 'Argh! ' + error;
     }
 }
+
+async function loadServices(services){
+  try {
+
+    for (const service of services){
+      const s_uuid = service.uuid;
+      var button = document.createElement("button");
+      button.setAttribute('class', 'w3-button w3-block w3-theme-l1 w3-left-align');
+      button.setAttribute('onclick', 'myFunction('+setAttribute+')');
+      button.textContent = s_uuid;
+
+      serviceList.appendChild(button);
+      const characteristics = await service.getCharacteristics();
+      for (const ch of characteristics){
+        //srvs += ch.uuid + getSupportedProperties(ch) + "\r\n";
+      }
+    }
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
+    textAlert.innerText = srvs;
+
+  }
+  catch (error){
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
+    textAlert.textContent = 'Argh! ' + error;
+  }
+}
+
 async function connectDevice(device){
 
   try {
