@@ -18,7 +18,7 @@ async function loadPaired(){
       li.addEventListener('click', async function(){
         this.setAttribute('class', 'w3-pale-blue');
         cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
-        scanAlert.textContent = 'Connecting to ' + dev.name;
+        textAlert.textContent = 'Connecting to ' + dev.name;
         let abortController = new AbortController();
         await dev.watchAdvertisements({signal: abortController.signal});
         dev.addEventListener('advertisementreceived', async (evt) => {
@@ -32,14 +32,14 @@ async function loadPaired(){
   }
   catch{
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    scanAlert.textContent = 'Argh! ' + error;
+    textAlert.textContent = 'Argh! ' + error;
   }
 }
 
 async function scanDevice(){
   try {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
-    scanAlert.textContent = 'Scanning...';
+    textAlert.textContent = 'Scanning...';
     let options = {
       acceptAllDevices: true
     };
@@ -52,7 +52,7 @@ async function scanDevice(){
   }
   catch(error)  {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    scanAlert.textContent = 'Argh! ' + error;
+    textAlert.textContent = 'Argh! ' + error;
     }
 }
 async function connectDevice(device){
@@ -66,12 +66,12 @@ async function connectDevice(device){
     // const str = new TextDecoder().decode(tx_value).split(",");
 
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
-    scanAlert.textContent = 'Data read success';
+    textAlert.textContent = 'Data read success';
 
   }
   catch (error){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    scanAlert.textContent = 'Argh! ' + error;
+    textAlert.textContent = 'Argh! ' + error;
   }
 
 }
