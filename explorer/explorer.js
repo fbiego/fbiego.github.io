@@ -92,17 +92,9 @@ async function loadServices(services){
         if (getSupportedProperties(ch).includes('NOTIFY', 0)){
           //ch.addEventListener('characteristicvaluechanged', handleNotifications);
           const desc = await ch.getDescriptors();
-          li.textContent += '\n> Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
-          if (!read){
-            await desc[0].readValue().then(value => {
-              let notificationsBit = value.getUint8(0) & 0b01;
-              logs.innerText += '\n' + '  > Notifications: ' + (notificationsBit ? 'ON' : 'OFF');
-              let indicationsBit = value.getUint8(0) & 0b10;
-              logs.innerText += '\n' + '  > Indications: ' + (indicationsBit ? 'ON' : 'OFF');
-            });
+          li.innerText += '<br>Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
 
-            read = true;
-          }
+          
         }
         
         ul.appendChild(li);
