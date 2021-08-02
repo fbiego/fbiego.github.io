@@ -91,7 +91,7 @@ async function loadServices(services){
         if (getSupportedProperties(ch).includes('NOTIFY', 0)){
           //ch.addEventListener('characteristicvaluechanged', handleNotifications);
         }
-        const desc = ch.getDescriptors();
+        const desc = await ch.getDescriptors();
         for (const ds of desc){
           li.textContent += '\n' + ds.uuid;
         }
