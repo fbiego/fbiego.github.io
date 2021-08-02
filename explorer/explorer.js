@@ -127,6 +127,7 @@ async function connectDevice(device){
     await rx_characteristic.startNotifications();
     const data = new Uint8Array([0xA0]);
     tx_characteristic.writeValue(data);
+    textAlert.textContent += '\nComplete';
 
   }
   catch (error){
