@@ -63,7 +63,7 @@ async function scanDevice(){
 
 function handleNotifications(event){
   let value = event.target.value;
-  logs.innerText += logs.innerText + '<br>';
+  logs.innerText += logs.innerText + '<br>' + value;
 }
 
 async function loadServices(services){
