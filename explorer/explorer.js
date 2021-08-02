@@ -91,6 +91,10 @@ async function loadServices(services){
         if (getSupportedProperties(ch).includes('NOTIFY', 0)){
           //ch.addEventListener('characteristicvaluechanged', handleNotifications);
         }
+        const desc = ch.getDescriptors();
+        for (const ds of desc){
+          li.textContent += '\n' + ds.uuid;
+        }
         ul.appendChild(li);
       }
       demoDiv.appendChild(ul);
@@ -119,14 +123,21 @@ async function connectDevice(device){
 
     loadServices(services);
 
-    const main_service = await server.getPrimaryService('fb1e4001-54ae-4a28-9f74-dfccb248601d');
-    const tx_characteristic = await main_service.getCharacteristic('fb1e4002-54ae-4a28-9f74-dfccb248601d');
-    const rx_characteristic = await main_service.getCharacteristic('fb1e4003-54ae-4a28-9f74-dfccb248601d');
-    rx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
-    //tx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
-    await rx_characteristic.startNotifications();
-    const data = new Uint8Array([0xA0]);
-    tx_characteristic.writeValue(data);
+    // const main_service = await server.getPrimaryService('fb1e4001-54ae-4a28-9f74-dfccb248601d');
+    // const tx_characteristic = await main_service.getCharacteristic('fb1e4002-54ae-4a28-9f74-dfccb248601d');
+    // const rx_characteristic = await main_service.getCharacteristic('fb1e4003-54ae-4a28-9f74-dfccb248601d');
+    // rx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
+    // //tx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
+    // //await rx_characteristic.startNotifications();
+    // //const nt = await rx_characteristic.getDescriptor('00002902-0000-1000-8000-00805f9b34fb');
+    // await nt.readValue().then(value => {
+    //         let notificationsBit = value.getUint8(0) & 0b01;
+    //         logs.innerText += '\n' + '  > Notifications: ' + (notificationsBit ? 'ON' : 'OFF');
+    //         let indicationsBit = value.getUint8(0) & 0b10;
+    //         logs.innerText += '\n' + '  > Indications: ' + (indicationsBit ? 'ON' : 'OFF');
+    //       });
+    // const data = new Uint8Array([0xA0]);
+    // tx_characteristic.writeValue(data);
     textAlert.textContent += '\nComplete';
 
   }
