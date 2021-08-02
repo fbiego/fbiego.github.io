@@ -90,10 +90,10 @@ async function loadServices(services){
         li.textContent = ch.uuid + ' ' + getSupportedProperties(ch);
         if (getSupportedProperties(ch).includes('NOTIFY', 0)){
           //ch.addEventListener('characteristicvaluechanged', handleNotifications);
-          
+          const desc = await ch.getDescriptors();
+          li.textContent += '\n> Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
         }
-        const desc = await ch.getDescriptors();
-        li.textContent += '> Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
+        
         ul.appendChild(li);
       }
       demoDiv.appendChild(ul);
