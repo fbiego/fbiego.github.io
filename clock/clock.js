@@ -5,7 +5,6 @@ let deviceList = document.querySelector('#deviceList');
 let textAlert = document.querySelector('#outputText');
 let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
-let serviceUUID = document.querySelector('#serviceUUID');
 let logs = document.querySelector('#notifyLogs');
 let read = false;
 
@@ -48,7 +47,7 @@ async function scanDevice(){
     textAlert.textContent = 'Scanning...';
     let options = {
       acceptAllDevices: true,
-      optionalServices: [serviceUUID.value]
+      optionalServices: [service_uuid]
     };
     
 
