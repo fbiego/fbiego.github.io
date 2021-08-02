@@ -126,7 +126,7 @@ async function connectDevice(device){
     tx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
     await rx_characteristic.startNotifications();
     //const data = new Uint8Array([0xA0]);
-    const data = new TextDecoder().decode('Data');
+    const data = new TextDecoder().encode('Data');
     tx_characteristic.writeValue(data);
 
   }
