@@ -54,9 +54,18 @@ async function scanDevice(){
     const device = await navigator.bluetooth.requestDevice(options);
 
     
-    loadPaired();
-    connectDevice(device);
-    
+    const server = await device.gatt.connect();
+    const services = await server.getPrimaryServices();
+    loadServices(services);
+    const main_service = await server.getPrimaryService('fb1e4001-54ae-4a28-9f74-dfccb248601d');
+    const tx_characteristic = await main_service.getCharacteristic('fb1e4002-54ae-4a28-9f74-dfccb248601d');
+    const rx_characteristic = await main_service.getCharacteristic('fb1e4003-54ae-4a28-9f74-dfccb248601d');
+    const data = Uint8Array.of(0xA0);
+    tx_characteristic.writeValue(data);
+
+
+
+
   }
   catch(error)  {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
