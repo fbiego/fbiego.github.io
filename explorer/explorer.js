@@ -120,8 +120,8 @@ async function connectDevice(device){
     loadServices(services);
 
     const main_service = await server.getPrimaryService('fb1e4001-54ae-4a28-9f74-dfccb248601d');
-    const tx_characteristic = await main_service.getCharacteristic('fb1e4002-54ae-4a28-9f74-dfccb248601d')
-    const rx_characteristic = await main_service.getCharacteristic('fb1e4003-54ae-4a28-9f74-dfccb248601d')
+    const tx_characteristic = await main_service.getCharacteristic('fb1e4002-54ae-4a28-9f74-dfccb248601d');
+    const rx_characteristic = await main_service.getCharacteristic('fb1e4003-54ae-4a28-9f74-dfccb248601d');
     rx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
     tx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
     await rx_characteristic.startNotifications();
