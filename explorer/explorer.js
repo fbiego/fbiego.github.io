@@ -132,7 +132,7 @@ async function connectDevice(device){
     const tx_characteristic = await main_service.getCharacteristic('fb1e4002-54ae-4a28-9f74-dfccb248601d');
     const rx_characteristic = await main_service.getCharacteristic('fb1e4003-54ae-4a28-9f74-dfccb248601d');
     rx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
-    tx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
+    //tx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
     //await rx_characteristic.startNotifications();
     startNotifications(rx_characteristic);
     const data = new Uint8Array([0xA0]);
