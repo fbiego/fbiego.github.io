@@ -12,6 +12,11 @@ let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
 let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
 let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 
+let options = {
+      acceptAllDevices: true,
+      optionalServices: [service_uuid]
+    };
+
 async function loadPaired(){
   try {
     const devices = await navigator.bluetooth.getDevices();
@@ -45,10 +50,7 @@ async function scanDevice(){
   try {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
     textAlert.textContent = 'Scanning...';
-    let options = {
-      acceptAllDevices: true,
-      optionalServices: [service_uuid]
-    };
+    
     
 
     const device = await navigator.bluetooth.requestDevice(options);
@@ -64,13 +66,33 @@ async function scanDevice(){
     tx_characteristic.writeValue(data);
 
 
-
-
   }
   catch(error)  {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
     textAlert.textContent = error;
     }
+}
+
+function connectClock(){
+
+    navigator.bluetooth.requestDevice(options)
+    .then(device => device.gatt.connect())
+    .then(server => server.getPrimaryService(service_uuid))
+    .then(service => service.getCharacteristic(tx_uuid))
+    .then(characteristic => {
+      // Writing 1 is the signal to reset energy expended.
+      const resetEnergyExpended = Uint8Array.of(1);
+      return characteristic.writeValue(resetEnergyExpended);
+    })
+    .then(_ => {
+      cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
+    textAlert.textContent ="Done ";
+    })
+    .catch(error => { 
+      cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
+      textAlert.textContent = error; 
+    });
+
 }
 
 function handleNotifications(event){
@@ -161,4 +183,4 @@ async function connectDevice(device){
 
 }
 
-scanButton.addEventListener('click', scanDevice);
+scanButton.addEventListener('click', connectClock);
