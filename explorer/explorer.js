@@ -6,6 +6,7 @@ let textAlert = document.querySelector('#outputText');
 let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
 let serviceUUID = document.querySelector('#serviceUUID');
+let logs = document.querySelector('#notifyLogs');
 
 
 async function loadPaired(){
