@@ -61,6 +61,11 @@ async function scanDevice(){
     }
 }
 
+function handleNotifications(event){
+  let value = event.target.value;
+  logs.innerText += logs.innerText + '<br>';
+}
+
 async function loadServices(services){
   try {
     removeAllChildNodes(serviceList);
@@ -83,6 +88,9 @@ async function loadServices(services){
         //srvs += ch.uuid + getSupportedProperties(ch) + "\r\n";
         var li = document.createElement('li');
         li.textContent = ch.uuid + ' ' + getSupportedProperties(ch);
+        if (getSupportedProperties(ch).includes('NOTIFY', 0)){
+          ch.addEventListener('characteristicvaluechanged', handleNotifications);
+        }
         ul.appendChild(li);
       }
       demoDiv.appendChild(ul);
