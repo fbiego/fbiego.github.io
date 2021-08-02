@@ -89,7 +89,7 @@ async function loadServices(services){
         var li = document.createElement('li');
         li.textContent = ch.uuid + ' ' + getSupportedProperties(ch);
         if (getSupportedProperties(ch).includes('NOTIFY', 0)){
-          ch.addEventListener('characteristicvaluechanged', handleNotifications);
+          //ch.addEventListener('characteristicvaluechanged', handleNotifications);
         }
         ul.appendChild(li);
       }
@@ -121,6 +121,8 @@ async function connectDevice(device){
 
     const main_service = await server.getPrimaryService('fb1e4001-54ae-4a28-9f74-dfccb248601d');
     const tx_characteristic = await main_service.getCharacteristic('fb1e4002-54ae-4a28-9f74-dfccb248601d')
+    const rx_characteristic = await main_service.getCharacteristic('fb1e4003-54ae-4a28-9f74-dfccb248601d')
+    rx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
     const data = new Uint8Array([0xA0]);
     tx_characteristic.writeValue(data);
 
