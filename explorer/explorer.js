@@ -7,6 +7,7 @@ let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
 let serviceUUID = document.querySelector('#serviceUUID');
 let logs = document.querySelector('#notifyLogs');
+let read = false;
 
 
 async function loadPaired(){
@@ -20,7 +21,7 @@ async function loadPaired(){
       li.addEventListener('click', async function(){
         this.setAttribute('class', 'w3-pale-blue');
         cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
-        textAlert.textContent += 'Connecting to ' + dev.name;
+        textAlert.textContent = 'Connecting to ' + dev.name;
         let abortController = new AbortController();
         await dev.watchAdvertisements({signal: abortController.signal});
         dev.addEventListener('advertisementreceived', async (evt) => {
@@ -34,14 +35,14 @@ async function loadPaired(){
   }
   catch (error) {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent += error;
+    textAlert.textContent = error;
   }
 }
 
 async function scanDevice(){
   try {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
-    textAlert.textContent += 'Scanning...';
+    textAlert.textContent = 'Scanning...';
     let options = {
       acceptAllDevices: true,
       optionalServices: [serviceUUID.value]
@@ -57,7 +58,7 @@ async function scanDevice(){
   }
   catch(error)  {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent += error;
+    textAlert.textContent = error;
     }
 }
 
@@ -92,6 +93,16 @@ async function loadServices(services){
           //ch.addEventListener('characteristicvaluechanged', handleNotifications);
           const desc = await ch.getDescriptors();
           li.textContent += '\n> Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
+          if (!read){
+            await desc[0].readValue().then(value => {
+              let notificationsBit = value.getUint8(0) & 0b01;
+              logs.innerText += '\n' + '  > Notifications: ' + (notificationsBit ? 'ON' : 'OFF');
+              let indicationsBit = value.getUint8(0) & 0b10;
+              logs.innerText += '\n' + '  > Indications: ' + (indicationsBit ? 'ON' : 'OFF');
+            });
+
+            read = true;
+          }
         }
         
         ul.appendChild(li);
@@ -106,7 +117,7 @@ async function loadServices(services){
   }
   catch (error){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent += error;
+    textAlert.textContent = error;
   }
 }
 
@@ -137,12 +148,12 @@ async function connectDevice(device){
     //       });
     // const data = new Uint8Array([0xA0]);
     // tx_characteristic.writeValue(data);
-    textAlert.textContent += '\nComplete';
+    textAlert.textContent = '\nComplete';
 
   }
   catch (error){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent += error;
+    textAlert.textContent = error;
   }
 
 }
