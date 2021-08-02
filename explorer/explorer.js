@@ -20,7 +20,7 @@ async function loadPaired(){
       li.addEventListener('click', async function(){
         this.setAttribute('class', 'w3-pale-blue');
         cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
-        textAlert.textContent = 'Connecting to ' + dev.name;
+        textAlert.textContent += 'Connecting to ' + dev.name;
         let abortController = new AbortController();
         await dev.watchAdvertisements({signal: abortController.signal});
         dev.addEventListener('advertisementreceived', async (evt) => {
@@ -34,14 +34,14 @@ async function loadPaired(){
   }
   catch (error) {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent = error;
+    textAlert.textContent += error;
   }
 }
 
 async function scanDevice(){
   try {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
-    textAlert.textContent = 'Scanning...';
+    textAlert.textContent += 'Scanning...';
     let options = {
       acceptAllDevices: true,
       optionalServices: [serviceUUID.value]
@@ -57,7 +57,7 @@ async function scanDevice(){
   }
   catch(error)  {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent = error;
+    textAlert.textContent += error;
     }
 }
 
@@ -66,7 +66,7 @@ async function startNotifications(characteristic) {
     await characteristic.startNotifications();
   } catch(error) {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent = error;
+    textAlert.textContent += error;
   }
 }
 
@@ -112,7 +112,7 @@ async function loadServices(services){
   }
   catch (error){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent = error;
+    textAlert.textContent += error;
   }
 }
 
@@ -141,7 +141,7 @@ async function connectDevice(device){
   }
   catch (error){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent = error;
+    textAlert.textContent += error;
   }
 
 }
