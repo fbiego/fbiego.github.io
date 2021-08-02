@@ -61,6 +61,15 @@ async function scanDevice(){
     }
 }
 
+async function startNotifications(characteristic) {
+  try {
+    await characteristic.startNotifications();
+  } catch(error) {
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
+    textAlert.textContent = error;
+  }
+}
+
 function handleNotifications(event){
   let value = event.target.value;
   logs.innerText += '\n' + value;
@@ -124,9 +133,9 @@ async function connectDevice(device){
     const rx_characteristic = await main_service.getCharacteristic('fb1e4003-54ae-4a28-9f74-dfccb248601d');
     rx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
     tx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
-    await rx_characteristic.startNotifications();
-    //const data = new Uint8Array([0xA0]);
-    const data = new TextEncoder().encode('Data');
+    //await rx_characteristic.startNotifications();
+    startNotifications(rx_characteristic);
+    const data = new Uint8Array([0xA0]);
     tx_characteristic.writeValue(data);
 
   }
