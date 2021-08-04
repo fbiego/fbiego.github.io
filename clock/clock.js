@@ -125,7 +125,7 @@ function onDisconnected(event) {
 }
 
 
-async function setProperties(characteristic) {
+function setProperties(characteristic) {
   var li = document.createElement("li");
   for (const p in characteristic.properties) {
     if (characteristic.properties[p] === true) {
@@ -154,10 +154,10 @@ async function setProperties(characteristic) {
           var button = document.createElement("button");
           button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
           button.textContent = 'Write';
-          button.addEventListener('click', async function(){
+          button.addEventListener('click', function(){
             var text = document.querySelector('#'+characteristic.uuid).value;
             const data = fromHexString(text);
-            await characteristic.writeValue(data);
+            characteristic.writeValue(data);
           });
           li.appendChild(button);
 
@@ -183,6 +183,7 @@ async function setProperties(characteristic) {
     input.setAttribute('id', characteristic.uuid);
     li.appendChild(input);
   }
+  characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
 
   return li;
 }
