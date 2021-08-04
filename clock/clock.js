@@ -111,6 +111,7 @@ function handleNotifications(event){
 function onDisconnected(event) {
   removeAllChildNodes(serviceList);
   disconnectButton.className += " w3-hide";
+  textAlert.textContent = 'Disconnected';
   loadPaired();
   // Object event.target is Bluetooth Device getting disconnected.
   //log('> Bluetooth Device disconnected');
