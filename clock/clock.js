@@ -146,6 +146,12 @@ function setProperties(characteristic) {
       }
     }
   }
+  if (characteristic.properties.write || characteristic.properties.writeWithoutResponse){
+    var input = document.createElement("input");
+    input.setAttribute('class', 'w3-input w3-round w3-border');
+    input.setAttribute('type', 'text');
+    li.appendChild(input);
+  }
   var span = document.createElement("span");
   span.textContent = characteristic.uuid;
   li.appendChild(span);
