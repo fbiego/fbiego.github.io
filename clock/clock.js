@@ -57,7 +57,7 @@ async function scanDevice(){
     
 
     const device = await navigator.bluetooth.requestDevice(options);
-    device.addEventListener('gattserverdisconnected', onDisconnected);
+    //device.addEventListener('gattserverdisconnected', onDisconnected);
     
     const server = await device.gatt.connect();
     const services = await server.getPrimaryServices();
