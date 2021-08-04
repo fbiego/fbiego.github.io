@@ -57,7 +57,7 @@ async function scanDevice(){
     
 
     const device = await navigator.bluetooth.requestDevice(options);
-
+    device.addEventListener('gattserverdisconnected', onDisconnected);
     
     const server = await device.gatt.connect();
     const services = await server.getPrimaryServices();
@@ -115,7 +115,12 @@ function handleNotifications(event){
   for(let i = 0; i < value.byteLength; i++){
     logs.innerText += ' ' + value.getUint8(i).toString(16);
   }
-  
+}
+
+function onDisconnected(event) {
+  removeAllChildNodes(deviceList);
+  // Object event.target is Bluetooth Device getting disconnected.
+  //log('> Bluetooth Device disconnected');
 }
 
 
