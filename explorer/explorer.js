@@ -64,7 +64,10 @@ async function scanDevice(){
 
 function handleNotifications(event){
   let value = event.target.value;
-  logs.innerText += '\n' + value;
+  logs.innerText += '\n';
+  for(let i = 0; i < value.byteLength; i++){
+    logs.innerText += ' ' + value.getUint8(i).toString(16);
+  }
 }
 
 async function loadServices(services){
