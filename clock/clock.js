@@ -255,6 +255,9 @@ async function connectDevice(device){
     const services = await server.getPrimaryServices();
     loadServices(services);
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
+    disconnectButton.addEventListener('click', function(){
+      device.gatt.disconnect();
+    });
 
   }
   catch (error){
