@@ -110,7 +110,11 @@ function connectClock(){
 
 function handleNotifications(event){
   let value = event.target.value;
-  logs.innerText += '\n' + value.buffer;
+  logs.innerText += '\n';
+  for(let i = 0; i < value.byteLength; i++){
+    logs.innerText += ' ' + value.getUint8(i);
+  }
+  
 }
 
 async function loadServices(services){
