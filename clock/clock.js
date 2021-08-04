@@ -110,7 +110,7 @@ function handleNotifications(event){
 
 function onDisconnected(event) {
   removeAllChildNodes(serviceList);
-  disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
+  disconnectButton.className += " w3-hide";
   loadPaired();
   // Object event.target is Bluetooth Device getting disconnected.
   //log('> Bluetooth Device disconnected');
@@ -254,7 +254,6 @@ async function connectDevice(device){
     const server = await device.gatt.connect();
     const services = await server.getPrimaryServices();
     loadServices(services);
-    disconnectButton.className += " w3-hide";
 
   }
   catch (error){
