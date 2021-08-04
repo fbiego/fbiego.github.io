@@ -140,7 +140,13 @@ function setProperties(characteristic) {
           input.setAttribute('class', 'w3-check');
           input.setAttribute('type', 'checkbox');
           input.setAttribute('id', characteristic.uuid);
-          input.addEventListener('change', setNotifications(characteristic));
+          input.addEventListener('change', function(){
+            if (this.checked){
+              logs.innerText += characteristic.uuid + ' Checked \n';
+            } else {
+              logs.innerText += characteristic.uuid + ' Unchecked \n';
+            }
+          });
           var label = document.createElement("label");
           label.textContent = 'Notify';
           div.appendChild(input);
