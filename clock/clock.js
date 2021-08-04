@@ -65,8 +65,10 @@ async function scanDevice(){
     const main_service = await server.getPrimaryService('fb1e4001-54ae-4a28-9f74-dfccb248601d');
     const tx_characteristic = await main_service.getCharacteristic('fb1e4002-54ae-4a28-9f74-dfccb248601d');
     const rx_characteristic = await main_service.getCharacteristic('fb1e4003-54ae-4a28-9f74-dfccb248601d');
-    const data = Uint8Array.of(1);
-    tx_characteristic.writeValue(data);
+    rx_characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
+    await rx_characteristic.startNotifications();
+    const data = Uint8Array.of(0xA0);
+    await tx_characteristic.writeValueWithResponse(data);
 
 
   }
