@@ -96,7 +96,6 @@ async function loadServices(services){
           ch.startNotifications();
           ch.addEventListener('characteristicvaluechanged', handleNotifications);
           //const desc = await ch.getDescriptors();
-          //li.innerText += '<br>Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
 
           
         }
