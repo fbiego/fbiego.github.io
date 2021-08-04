@@ -150,6 +150,19 @@ function setProperties(characteristic) {
           div.appendChild(label);
           li.appendChild(div);
         break;
+        case 'READ':
+          var button = document.createElement("button");
+          button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
+          button.textContent = 'Read';
+          button.addEventListener('click', async (evt) => {
+            const value = await characteristic.readValue();
+            const read = toHextString(value);
+            logs.innerText += '\n' + event.target.uuid + ': ' + read;
+
+          });
+          li.appendChild(button);
+
+        break;
         case 'WRITE':
           var button = document.createElement("button");
           button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
