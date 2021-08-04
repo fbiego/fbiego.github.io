@@ -119,7 +119,7 @@ function handleNotifications(event){
 }
 
 
-function setProperties(characteristic) {
+async function setProperties(characteristic) {
   var li = document.createElement("li");
   for (const p in characteristic.properties) {
     if (characteristic.properties[p] === true) {
@@ -133,9 +133,9 @@ function setProperties(characteristic) {
           input.setAttribute('id', characteristic.uuid);
           input.addEventListener('change', function(){
             if (this.checked){
-              logs.innerText += characteristic.uuid + ' Checked \n';
+              characteristic.startNotifications();
             } else {
-              logs.innerText += characteristic.uuid + ' Unchecked \n';
+              characteristic.stopNotifications();
             }
           });
           var label = document.createElement("label");
@@ -151,7 +151,7 @@ function setProperties(characteristic) {
           button.addEventListener('click', async function(){
             var text = document.querySelector('#'+characteristic.uuid).value;
             const data = fromHexString(text);
-            characteristic.writeValue(data);
+            await characteristic.writeValue(data);
           });
           li.appendChild(button);
 
