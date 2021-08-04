@@ -113,7 +113,7 @@ function handleNotifications(event){
   //const hex = Buffer.from(value.buffer).toString('hex');
   logs.innerText += '\n';
   for(let i = 0; i < value.byteLength; i++){
-    logs.innerText += ' ' + value.getUint8(i).toString('hex');
+    logs.innerText += ' ' + value.getUint8(i).toString(16);
   }
   
 }
