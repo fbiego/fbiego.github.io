@@ -171,15 +171,16 @@ async function loadServices(services){
       const characteristics = await service.getCharacteristics();
       for (const ch of characteristics){
         //srvs += ch.uuid + getSupportedProperties(ch) + "\r\n";
-        var li = document.createElement('li');
-        li.textContent = ch.uuid + ' ' + getSupportedProperties(ch);
-        if (getSupportedProperties(ch).includes('NOTIFY', 0)){
-          ch.addEventListener('characteristicvaluechanged', handleNotifications);
-          //const desc = await ch.getDescriptors();
-          //li.innerText += '<br>Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
+        //var li = document.createElement('li');
+        // li.textContent = ch.uuid + ' ' + getSupportedProperties(ch);
+        // if (getSupportedProperties(ch).includes('NOTIFY', 0)){
+        //   ch.addEventListener('characteristicvaluechanged', handleNotifications);
+        //   //const desc = await ch.getDescriptors();
+        //   //li.innerText += '<br>Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
 
           
-        }
+        // }
+        var li = setProperties(ch);
         
         ul.appendChild(li);
       }
