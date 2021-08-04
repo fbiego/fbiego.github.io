@@ -78,6 +78,9 @@ async function scanDevice(){
 
 function connectClock(){
 
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
+    textAlert.textContent = 'Connecting...';
+    
     navigator.bluetooth.requestDevice(options)
     .then(device => device.gatt.connect())
     .then(server => server.getPrimaryService(service_uuid))
