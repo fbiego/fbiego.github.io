@@ -183,7 +183,6 @@ async function setProperties(characteristic) {
     input.setAttribute('id', characteristic.uuid);
     li.appendChild(input);
   }
-  characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
 
   return li;
 }
