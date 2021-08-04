@@ -88,7 +88,7 @@ function connectClock(){
     .then(characteristic => {
       // Writing 1 is the signal to reset energy expended.
       const resetEnergyExpended = Uint8Array.of(1);
-      return characteristic.writeValue(resetEnergyExpended);
+      return characteristic.writeValueWithResponse(resetEnergyExpended);
     })
     .then(_ => {
       cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
