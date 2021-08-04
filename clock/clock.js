@@ -84,24 +84,24 @@ function connectClock(){
     navigator.bluetooth.requestDevice(options)
     .then(device => device.gatt.connect())
     .then(server => server.getPrimaryService(service_uuid))
-    .then(service => service.getCharacteristic(rx_uuid))
-    .then(characteristic => characteristic.startNotifications())
-    .then(characteristic => {
-      characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
-      textAlert.textContent ="Notifications Enabled ";
-    })
+    .then(service => service.getCharacteristic(tx_uuid))
+    // .then(characteristic => characteristic.startNotifications())
     // .then(characteristic => {
-    //   // Writing 1 is the signal to reset energy expended.
-    //   const resetEnergyExpended = Uint8Array.of(1);
-    //   return characteristic.writeValueWithResponse(resetEnergyExpended);
+    //   characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
+    //   textAlert.textContent ="Notifications Enabled ";
     // })
+    .then(characteristic => {
+      // Writing 1 is the signal to reset energy expended.
+      const resetEnergyExpended = Uint8Array.of(1);
+      return characteristic.writeValueWithResponse(resetEnergyExpended);
+    })
     .then(_ => {
       cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
-    textAlert.textContent ="Done ";
+    textAlert.textContent +="Done ";
     })
     .catch(error => { 
       cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-      textAlert.textContent = error; 
+      textAlert.textContent += error; 
     });
 
 }
