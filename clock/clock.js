@@ -110,7 +110,8 @@ function connectClock(){
 
 function handleNotifications(event){
   let value = event.target.value;
-  logs.innerText += '\n' + value.toString('hex');
+  const hex = Buffer.from(value).toString('hex');
+  logs.innerText += hex + '\n';
   for(let i = 0; i < value.byteLength; i++){
     logs.innerText += ' ' + value.getUint8(i);
   }
