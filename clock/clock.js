@@ -101,7 +101,7 @@ async function scanDevice(){
 
 function handleNotifications(event){
   let value = event.target.value;
-  //const hex = Buffer.from(value.buffer).toString('hex');
+  const hex = toHexString(value);
   logs.innerText += '\n' + event.target.uuid + ': ';
   for(let i = 0; i < value.byteLength; i++){
     logs.innerText += ' ' + value.getUint8(i).toString(16);
