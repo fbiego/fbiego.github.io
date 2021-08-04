@@ -146,8 +146,9 @@ function setProperties(characteristic) {
       }
     }
   }
-  var name = document.createElement("span");
+  var span = document.createElement("span");
   span.textContent = characteristic.uuid;
+  li.appendChild(span);
   return li;
 }
 
