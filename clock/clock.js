@@ -196,4 +196,4 @@ async function connectDevice(device){
 
 }
 
-scanButton.addEventListener('click', connectClock);
+scanButton.addEventListener('click', scanDevice);
