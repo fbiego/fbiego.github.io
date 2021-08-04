@@ -157,7 +157,7 @@ function setProperties(characteristic) {
           button.addEventListener('click', function(){
             var text = document.querySelector('#'+characteristic.uuid).value;
             const data = fromHexString(text);
-            characteristic.writeValue(data);
+            characteristic.writeValueWithResponse(data);
           });
           li.appendChild(button);
 
@@ -166,6 +166,11 @@ function setProperties(characteristic) {
           var button = document.createElement("button");
           button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
           button.textContent = 'Write NR';
+          button.addEventListener('click', function(){
+            var text = document.querySelector('#'+characteristic.uuid).value;
+            const data = fromHexString(text);
+            characteristic.writeValueWithoutResponse(data);
+          });
           li.appendChild(button);
 
         break;
