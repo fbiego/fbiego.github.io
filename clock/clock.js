@@ -151,7 +151,7 @@ function setProperties(characteristic) {
           button.addEventListener('click', async function(){
             var text = document.querySelector('#'+characteristic.uuid).value;
             const data = fromHexString(text);
-            await characteristic.writeValue(data);
+            characteristic.writeValue(data);
           });
           li.appendChild(button);
 
