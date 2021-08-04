@@ -108,15 +108,6 @@ function connectClock(){
 
 }
 
-function setNotifications(characteristic){
-  var checkbox = document.querySelector('#'+characteristic.uuid);
-  if (checkbox.checked){
-    logs.innerText += characteristic.uuid + ' Checked\n';
-  } else {
-    logs.innerText += characteristic.uuid + ' Unchecked \n';
-  }
-}
-
 function handleNotifications(event){
   let value = event.target.value;
   //const hex = Buffer.from(value.buffer).toString('hex');
