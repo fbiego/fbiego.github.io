@@ -1,6 +1,7 @@
 
 
 let scanButton = document.querySelector('#scanButton');
+let disconnectButton = document.querySelector('#disconnectButton');
 let deviceList = document.querySelector('#deviceList');
 let textAlert = document.querySelector('#outputText');
 let cardAlert = document.querySelector('#outputCard');
