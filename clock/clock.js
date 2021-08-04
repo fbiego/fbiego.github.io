@@ -271,4 +271,12 @@ async function connectDevice(device){
 
 }
 
+function copyLogs(){
+
+}
+
+function clearLogs(){
+  
+}
+
 scanButton.addEventListener('click', scanDevice);
