@@ -118,7 +118,8 @@ function handleNotifications(event){
 }
 
 function onDisconnected(event) {
-  removeAllChildNodes(deviceList);
+  removeAllChildNodes(serviceList);
+  loadPaired();
   // Object event.target is Bluetooth Device getting disconnected.
   //log('> Bluetooth Device disconnected');
 }
