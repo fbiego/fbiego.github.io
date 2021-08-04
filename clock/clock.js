@@ -157,7 +157,7 @@ function setProperties(characteristic) {
           button.addEventListener('click', async (evt) => {
             const value = await characteristic.readValue();
             const read = toHextString(value);
-            logs.innerText += '\n' + event.target.uuid + ': ' + read;
+            logs.innerText += '\n' + characteristic.uuid + ': ' + read;
 
           });
           li.appendChild(button);
