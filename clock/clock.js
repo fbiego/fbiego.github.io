@@ -130,6 +130,8 @@ function setProperties(characteristic) {
           input.setAttribute('class', 'w3-check');
           input.setAttribute('type', 'checkbox');
           input.setAttribute('id', characteristic.uuid);
+          input.setChecked = true;
+          characteristic.startNotifications();
           input.addEventListener('change', function() {
             if (this.checked){
               characteristic.startNotifications();
