@@ -123,7 +123,6 @@ function setProperties(characteristic) {
   var li = document.createElement("li");
   for (const p in characteristic.properties) {
     if (characteristic.properties[p] === true) {
-      supportedProperties.push(p.toUpperCase());
       switch (p.toUpperCase()){
         case 'NOTIFY':
           var div = document.createElement("div");
