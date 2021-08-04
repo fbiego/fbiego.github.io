@@ -102,9 +102,9 @@ async function scanDevice(){
 function handleNotifications(event){
   let value = event.target.value;
   const hex = toHexString(value);
-  logs.innerText += '\n' + event.target.uuid + ': ';
+  logs.innerText += '\n' + event.target.uuid + ': ' + hex;
   for(let i = 0; i < value.byteLength; i++){
-    logs.innerText += ' ' + value.getUint8(i).toString(16);
+    //logs.innerText += ' ' + value.getUint8(i).toString(16);
   }
 }
 
@@ -148,7 +148,7 @@ function setProperties(characteristic) {
           button.textContent = 'Read';
           button.addEventListener('click', async (evt) => {
             const value = await characteristic.readValue();
-            const read = toHextString(value);
+            const read = toHexString(value);
             logs.innerText += '\n' + characteristic.uuid + ': ' + read;
 
           });
