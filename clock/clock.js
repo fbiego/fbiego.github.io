@@ -87,7 +87,7 @@ function connectClock(){
     .then(service => service.getCharacteristic(tx_uuid))
     .then(characteristic => {
       // Writing 1 is the signal to reset energy expended.
-      const resetEnergyExpended = Uint8Array.of(0xA0);
+      const resetEnergyExpended = Uint8Array.of(1);
       return characteristic.writeValue(resetEnergyExpended);
     })
     .then(_ => {
