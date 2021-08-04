@@ -128,7 +128,7 @@ function setProperties(characteristic) {
           var div = document.createElement("div");
           div.setAttribute('class', 'w3-bar-item w3-tiny w3-right');
           var input = document.createElement("input");
-          input.setAttribute('class', '3-check');
+          input.setAttribute('class', 'w3-check');
           input.setAttribute('type', 'checkbox');
           var label = document.createElement("label");
           label.textContent = characteristic.uuid;
