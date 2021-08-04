@@ -13,9 +13,11 @@ let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
 let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 
 let options = {
-      acceptAllDevices: true,
-      optionalServices: [service_uuid]
-    };
+  acceptAllDevices: true,
+  optionalServices: [service_uuid]
+};
+
+let filters = [{namePrefix: 'ESP'}];
 
 async function loadPaired(){
   try {
