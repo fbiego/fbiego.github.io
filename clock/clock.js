@@ -276,7 +276,7 @@ function copyLogs(){
 }
 
 function clearLogs(){
-  
+  logs.textContent = "";
 }
 
 scanButton.addEventListener('click', scanDevice);
