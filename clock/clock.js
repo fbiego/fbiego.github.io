@@ -141,9 +141,9 @@ async function loadServices(services){
         var li = document.createElement('li');
         li.textContent = ch.uuid + ' ' + getSupportedProperties(ch);
         if (getSupportedProperties(ch).includes('NOTIFY', 0)){
-          //ch.addEventListener('characteristicvaluechanged', handleNotifications);
-          const desc = await ch.getDescriptors();
-          li.innerText += '<br>Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
+          ch.addEventListener('characteristicvaluechanged', handleNotifications);
+          //const desc = await ch.getDescriptors();
+          //li.innerText += '<br>Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
 
           
         }
