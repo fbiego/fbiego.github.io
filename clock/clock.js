@@ -137,11 +137,11 @@ function setProperties(characteristic) {
           input.setAttribute('class', 'w3-check');
           input.setAttribute('type', 'checkbox');
           input.setAttribute('id', characteristic.uuid);
-          input.addEventListener('change', function(){
+          input.addEventListener('change', async (evt) => {
             if (this.checked){
-              characteristic.startNotifications();
+              await characteristic.startNotifications();
             } else {
-              characteristic.stopNotifications();
+              await characteristic.stopNotifications();
             }
           });
           var label = document.createElement("label");
@@ -154,10 +154,10 @@ function setProperties(characteristic) {
           var button = document.createElement("button");
           button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
           button.textContent = 'Write';
-          button.addEventListener('click', function(){
+          button.addEventListener('click', async (evt) => {
             var text = document.querySelector('#'+characteristic.uuid).value;
             const data = fromHexString(text);
-            characteristic.writeValueWithResponse(data);
+            await characteristic.writeValueWithResponse(data);
           });
           li.appendChild(button);
 
@@ -166,10 +166,10 @@ function setProperties(characteristic) {
           var button = document.createElement("button");
           button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
           button.textContent = 'Write NR';
-          button.addEventListener('click', function(){
+          button.addEventListener('click', async (evt) => {
             var text = document.querySelector('#'+characteristic.uuid).value;
             const data = fromHexString(text);
-            characteristic.writeValueWithoutResponse(data);
+            await characteristic.writeValueWithoutResponse(data);
           });
           li.appendChild(button);
 
