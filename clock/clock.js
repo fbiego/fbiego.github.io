@@ -131,7 +131,7 @@ function setProperties(characteristic) {
           input.setAttribute('class', 'w3-check');
           input.setAttribute('type', 'checkbox');
           var label = document.createElement("label");
-          label.textContent = characteristic.uuid;
+          label.textContent = 'Notify';
           div.appendChild(input);
           div.appendChild(label);
           li.appendChild(div);
@@ -146,6 +146,8 @@ function setProperties(characteristic) {
       }
     }
   }
+  var name = document.createElement("span");
+  span.textContent = characteristic.uuid;
   return li;
 }
 
