@@ -143,13 +143,20 @@ function setProperties(characteristic) {
           li.appendChild(button);
 
         break;
+        case 'WRITEWITHOUTRESPONSE':
+          var button = document.createElement("button");
+          button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
+          button.textContent = 'Write NR';
+          li.appendChild(button);
+
+        break;
       }
     }
   }
   var span = document.createElement("span");
   span.textContent = characteristic.uuid;
   li.appendChild(span);
-  
+
   if (characteristic.properties.write || characteristic.properties.writeWithoutResponse){
     var input = document.createElement("input");
     input.setAttribute('class', 'w3-input w3-round w3-border');
