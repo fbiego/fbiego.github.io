@@ -139,6 +139,7 @@ function setProperties(characteristic) {
           var input = document.createElement("input");
           input.setAttribute('class', 'w3-check');
           input.setAttribute('type', 'checkbox');
+          input.setAttribute('id', characteristic.uuid);
           input.addEventListener('change', setNotifications(characteristic));
           var label = document.createElement("label");
           label.textContent = 'Notify';
