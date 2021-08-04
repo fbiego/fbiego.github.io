@@ -272,6 +272,8 @@ async function connectDevice(device){
 }
 
 function copyLogs(){
+  const text = copyLogs.textContent;
+  navigator.clipboard.writeText(text);
 
 }
 
