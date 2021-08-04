@@ -256,7 +256,8 @@ async function connectDevice(device){
     loadServices(services);
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
     disconnectButton.addEventListener('click', function(){
-      device.gatt.disconnect();
+      textAlert.textContent = 'Disconnecting...';
+      await device.gatt.disconnect();
     });
 
   }
