@@ -44,8 +44,8 @@ async function scanDevice(){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
     textAlert.textContent = 'Scanning...';
     let options = {
-      acceptAllDevices: true,
-      optionalServices: [serviceUUID.value]
+      acceptAllDevices: true
+      //, optionalServices: [serviceUUID.value]
     };
     
 
