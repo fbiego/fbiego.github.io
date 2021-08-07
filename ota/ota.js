@@ -8,6 +8,7 @@ let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
 let logs = document.querySelector('#notifyLogs');
 let fileSelector = document.getElementById('otaFile');
+let uploadButton = document.querySelector('#uploadButton');
 
 let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
 let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
@@ -92,6 +93,10 @@ function handleNotifications(event){
 
 }
 
+function startOta(){
+
+}
+
 function onDisconnected(event) {
   removeAllChildNodes(serviceList);
   disconnectButton.className += " w3-hide";
@@ -151,3 +156,4 @@ function readFile(event){
 
 scanButton.addEventListener('click', scanDevice);
 fileSelector.addEventListener('change', readFile);
+uploadButton.addEventListener('click', startOta);
