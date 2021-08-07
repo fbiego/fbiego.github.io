@@ -111,7 +111,6 @@ async function startOta(){
 
 
 function onDisconnected(event) {
-  removeAllChildNodes(serviceList);
   disconnectButton.className += " w3-hide";
   textAlert.textContent = 'Disconnected';
   loadPaired();
