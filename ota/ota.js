@@ -13,8 +13,6 @@ let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
 let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
 let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 
-let filters = [{namePrefix: 'ESP'}];
-
 let options = {
   acceptAllDevices: true,
   optionalServices: [service_uuid]
@@ -68,35 +66,6 @@ async function scanDevice(){
     }
 }
 
-// function connectClock(){
-
-//     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
-//     textAlert.textContent = 'Connecting...';
-    
-//     navigator.bluetooth.requestDevice(options)
-//     .then(device => device.gatt.connect())
-//     .then(server => server.getPrimaryService(service_uuid))
-//     .then(service => service.getCharacteristic(tx_uuid))
-//     // .then(characteristic => characteristic.startNotifications())
-//     // .then(characteristic => {
-//     //   characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
-//     //   textAlert.textContent ="Notifications Enabled ";
-//     // })
-//     .then(characteristic => {
-//       // Writing 1 is the signal to reset energy expended.
-//       const resetEnergyExpended = Uint8Array.of(0xA0);
-//       return characteristic.writeValueWithResponse(resetEnergyExpended);
-//     })
-//     .then(_ => {
-//       cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
-//     textAlert.textContent +="Done ";
-//     })
-//     .catch(error => { 
-//       cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-//       textAlert.textContent += error; 
-//     });
-
-// }
 
 function handleNotifications(event){
   let value = event.target.value;
@@ -114,92 +83,6 @@ function onDisconnected(event) {
   loadPaired();
   // Object event.target is Bluetooth Device getting disconnected.
   //log('> Bluetooth Device disconnected');
-}
-
-
-function setProperties(characteristic) {
-  var li = document.createElement("li");
-  for (const p in characteristic.properties) {
-    if (characteristic.properties[p] === true) {
-      switch (p.toUpperCase()){
-        case 'NOTIFY':
-          var div = document.createElement("div");
-          div.setAttribute('class', 'w3-bar-item w3-tiny w3-right');
-          var input = document.createElement("input");
-          input.setAttribute('class', 'w3-check');
-          input.setAttribute('type', 'checkbox');
-          input.setAttribute('id', characteristic.uuid);
-          input.setChecked = true;
-          characteristic.startNotifications();
-          input.addEventListener('change', function() {
-            if (this.checked){
-              characteristic.startNotifications();
-            } else {
-              characteristic.stopNotifications();
-            }
-          });
-          var label = document.createElement("label");
-          label.textContent = 'Notify';
-          div.appendChild(input);
-          div.appendChild(label);
-          li.appendChild(div);
-        break;
-        case 'READ':
-          var button = document.createElement("button");
-          button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
-          button.textContent = 'Read';
-          button.addEventListener('click', async (evt) => {
-            const value = await characteristic.readValue();
-            const read = toHexString(value);
-            logs.innerText += '\n' + characteristic.uuid + ': ' + read;
-
-          });
-          li.appendChild(button);
-
-        break;
-        case 'WRITE':
-          var button = document.createElement("button");
-          button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
-          button.textContent = 'Write';
-          button.addEventListener('click', async (evt) => {
-            var text = document.querySelector('#'+characteristic.uuid).value;
-            const data = fromHexString(text);
-            //await characteristic.writeValueWithResponse(data);
-            await characteristic.writeValue(data);
-          });
-          li.appendChild(button);
-
-        break;
-        case 'WRITEWITHOUTRESPONSE':
-          var button = document.createElement("button");
-          button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
-          button.textContent = 'Write NR';
-          button.addEventListener('click', async (evt) => {
-            var text = document.querySelector('#'+characteristic.uuid).value;
-            const data = fromHexString(text);
-            //await characteristic.writeValueWithoutResponse(data);
-            await characteristic.writeValue(data);
-          });
-          li.appendChild(button);
-
-        break;
-      }
-    }
-  }
-  var span = document.createElement("span");
-  span.textContent = characteristic.uuid;
-  li.appendChild(span);
-
-  if (characteristic.properties.write || characteristic.properties.writeWithoutResponse){
-    var input = document.createElement("input");
-    input.setAttribute('class', 'w3-input w3-round w3-border');
-    input.setAttribute('type', 'text');
-    input.setAttribute('id', characteristic.uuid);
-    li.appendChild(input);
-  }
-  characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
-
-  return li;
 }
 
 
@@ -232,9 +115,9 @@ async function loadServices(services){
 
           
         // }
-        var li = setProperties(ch);
+        //var li = setProperties(ch);
         
-        ul.appendChild(li);
+        //ul.appendChild(li);
       }
       demoDiv.appendChild(ul);
       serviceList.appendChild(demoDiv);
