@@ -153,4 +153,91 @@ async function connectDevice(device){
 
 }
 
+
+function setProperties(characteristic) {
+  var li = document.createElement("li");
+  for (const p in characteristic.properties) {
+    if (characteristic.properties[p] === true) {
+      switch (p.toUpperCase()){
+        case 'NOTIFY':
+          var div = document.createElement("div");
+          div.setAttribute('class', 'w3-bar-item w3-tiny w3-right');
+          var input = document.createElement("input");
+          input.setAttribute('class', 'w3-check');
+          input.setAttribute('type', 'checkbox');
+          input.setAttribute('id', characteristic.uuid);
+          input.setChecked = true;
+          characteristic.startNotifications();
+          input.addEventListener('change', function() {
+            if (this.checked){
+              characteristic.startNotifications();
+            } else {
+              characteristic.stopNotifications();
+            }
+          });
+          var label = document.createElement("label");
+          label.textContent = 'Notify';
+          div.appendChild(input);
+          div.appendChild(label);
+          li.appendChild(div);
+        break;
+        case 'READ':
+          var button = document.createElement("button");
+          button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
+          button.textContent = 'Read';
+          button.addEventListener('click', async (evt) => {
+            const value = await characteristic.readValue();
+            const read = toHexString(value);
+            logs.innerText += '\n' + characteristic.uuid + ': ' + read;
+
+          });
+          li.appendChild(button);
+
+        break;
+        case 'WRITE':
+          var button = document.createElement("button");
+          button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
+          button.textContent = 'Write';
+          button.addEventListener('click', async (evt) => {
+            var text = document.querySelector('#'+characteristic.uuid).value;
+            const data = fromHexString(text);
+            //await characteristic.writeValueWithResponse(data);
+            await characteristic.writeValue(data);
+          });
+          li.appendChild(button);
+
+        break;
+        case 'WRITEWITHOUTRESPONSE':
+          var button = document.createElement("button");
+          button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
+          button.textContent = 'Write NR';
+          button.addEventListener('click', async (evt) => {
+            var text = document.querySelector('#'+characteristic.uuid).value;
+            const data = fromHexString(text);
+            //await characteristic.writeValueWithoutResponse(data);
+            await characteristic.writeValue(data);
+          });
+          li.appendChild(button);
+
+        break;
+      }
+    }
+  }
+  var span = document.createElement("span");
+  span.textContent = characteristic.uuid;
+  li.appendChild(span);
+
+  if (characteristic.properties.write || characteristic.properties.writeWithoutResponse){
+    var input = document.createElement("input");
+    input.setAttribute('class', 'w3-input w3-round w3-border');
+    input.setAttribute('type', 'text');
+    input.setAttribute('id', characteristic.uuid);
+    li.appendChild(input);
+  }
+  characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
+
+  return li;
+}
+
+
 scanButton.addEventListener('click', scanDevice);
