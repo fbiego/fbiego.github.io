@@ -89,10 +89,11 @@ function handleNotifications(event){
 
     break;
     case 0xF2: //complete, installing firmware
-
+      textAlert.textContent = 'Transfer Complete';
     break;
     case 0x0F: //ota result
-
+    const result = new TextDecoder().decode(value);
+      logs.innerText += result;
     break;
   }
 
