@@ -16,6 +16,7 @@ let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 
 
 var otaData = new Uint8Array();
+var fileSize = 0;
 
 let options = {
   acceptAllDevices: true,
@@ -142,8 +143,9 @@ function readFile(event){
   textAlert.innerText = event.target.files[0].name + "\n" + event.target.files[0].size;
   var reader = new FileReader();
   reader.onload = function(e) {
-    
+
     otaData = Uint8Array(e.target.result);
+    fileSize = otaData.length;
   };
   reader.onerror = function(e) {
     // error occurred
