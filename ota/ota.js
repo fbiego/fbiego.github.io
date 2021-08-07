@@ -98,12 +98,42 @@ function handleNotifications(event){
 
 }
 
+async function sendPart(pos){
+  var start = pos * PART;
+  var end = (pos+1) * PART
+
+  if (fileSize < end){
+    end = fileSize;
+  }
+  var parts = (end - start)/MTU;
+  for(const i = 0; i < parts; i++){
+    var toSend = [0xFB, i];
+    for (const y = 0; y < MTU; y++){
+      toSend.push(otaData[(pos*PART)+(MTU*i)+y]);
+    }
+    let send = new Uint8Array(toSend);
+    //await otaTX.writeValue(send);
+  }
+  if ((end-start)%MTU != 0){
+    var rem = (end-start)%MTU;
+    var toSend = [0xFB, parts];
+    for (const y = 0; y < rem; y++){
+      toSend.push(otaData[(pos*PART)+(MTU*parts)+y])
+    }
+    let send = new Uint8Array(toSend);
+    //await otaTX.writeValue(send);
+  }
+  var update = new Uint8Array([0xFC, Math.trunc((end-start)/256), Math.trunc((end-start)%256), Math.trunc(pos/256), Math.trunc(pos/256)]);
+  //await otaTX.writeValue(update);
+}
+
 async function startOta(){
   //progressBar.setAttribute('style', 'width:90%');
 
   var parts = Math.ceil(fileSize/PART);
   //logs.innerText += parts/256;
-  var otaInfo = Uint8Array.of(0xFF, Math.trunc(parts/256), Math.trunc(parts%256), Math.trunc(MTU/256), Math.trunc(MTU%256));
+  var data = [0xFF, Math.trunc(parts/256), Math.trunc(parts%256), Math.trunc(MTU/256), Math.trunc(MTU%256)];
+  var otaInfo = new Uint8Array(data);
   logs.innerText += otaInfo;
 
 
