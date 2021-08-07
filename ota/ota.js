@@ -7,7 +7,7 @@ let textAlert = document.querySelector('#outputText');
 let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
 let logs = document.querySelector('#notifyLogs');
-let fileSelector = document.getElementById('otaFile');
+let fileSelector = document.querySelector('#otaFile');
 let uploadButton = document.querySelector('#uploadButton');
 
 let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
@@ -144,7 +144,8 @@ function readFile(event){
   var reader = new FileReader();
   reader.onload = function(e) {
 
-    otaData = Uint8Array(e.target.result);
+    otaData = new Uint8Array(e.target.result);
+    uploadButton.className = uploadButton.className.replace(" w3-hide", "");
     fileSize = otaData.length;
   };
   reader.onerror = function(e) {
