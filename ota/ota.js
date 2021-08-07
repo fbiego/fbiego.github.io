@@ -9,6 +9,7 @@ let serviceList = document.querySelector('#services');
 let logs = document.querySelector('#notifyLogs');
 let fileSelector = document.querySelector('#otaFile');
 let uploadButton = document.querySelector('#uploadButton');
+let progressBar = document.querySelector('#progressBar');
 
 let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
 let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
