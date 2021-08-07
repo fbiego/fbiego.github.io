@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<title>ESP Clock</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+</style>
+<body class="w3-theme-l5" onload="loadPaired()">
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-blue w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-blue" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="../" class="w3-bar-item w3-button w3-padding-large w3-indigo"><i class="fa fa-home"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-bluetooth w3-margin-right"></i>Bluetooth Low Energy</a>
+
+ </div>
+ <div id="navDemo" class="w3-bar-block w3-blue w3-opacity-min w3-hide w3-hide-large w3-hide-medium w3-large">
+	<a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+	<a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+ </div>
+</div>
+
+<!-- Navbar on small screens -->
+
+<!-- Page Container -->
+<div class="w3-content" style="max-width:1400px;margin-top:50px;margin-bottom:100px">    
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m6 w3-round">
+      <!-- Profile -->
+      <div class="w3-round w3-white w3-margin">
+        <div class="w3-container">
+         <h4>Paired Devices</h4>
+         <ul class="w3-ul w3-hoverable w3-border w3-round" id="deviceList">
+		 </ul>
+		 <button type="button" id="scanButton" class="w3-button w3-round w3-margin w3-text-white w3-blue">Connect</button>
+		 <button type="button" id="disconnectButton" class="w3-button w3-round w3-margin w3-text-white w3-red w3-hide">Disconnect</button>
+        </div>
+      </div>
+      <br>
+      
+      <!-- Accordion -->
+      <div class="w3-round w3-white w3-margin">
+		<div class="w3-container">
+		<h4>Services</h4>
+        <div class="w3-white w3-margin-bottom" id="services">
+		<!--
+          <button onclick="myFunction('Demo1')" id="service" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Service 1</button>
+          <div id="Demo1" class="w3-hide w3-container">
+            <ul class="w3-ul">
+				<li class="">
+						<button type="button" class="w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left">Read</button>
+						<button type="button" class="w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left">Write</button>
+						<div class="w3-bar-item w3-tiny w3-right">
+							<input class="w3-check" type="checkbox">
+							<label>Notify</label>
+						</div>
+						<span class="w3-large w3-bar-item w3-text-small">fb1e4002-54ae-4a28-9f74-dfccb248601d</span>
+						
+					<input class="w3-input w3-round w3-border" type="text">
+				</li>
+			</ul>
+          </div> -->
+		  </div>
+        </div>      
+      </div>
+
+    <!-- End Left Column -->
+    </div>
+    <div class="w3-col m6 w3-round">
+      <!-- Profile -->
+	  
+	  <div class="w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl" id="outputCard">
+        <p><strong>Info</strong></p>
+        <p id="outputText">Connect a BLE device</p>
+      </div>
+	  <br>
+      
+      
+      <!-- Alert Box -->
+      <div class="w3-container w3-margin w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border wl">
+		<div class="w3-display-topright">
+			<span onclick="copyLogs()" class="w3-button w3-blue">
+				<i class="fa fa-copy"></i>
+			</span>
+			<span onclick="clearLogs()" class="w3-button w3-red">
+				<i class="fa fa-remove"></i>
+			</span>
+		</div>
+        <p><strong>Notifications</strong></p>
+        <p id="notifyLogs"></p>
+      </div>
+    
+    <!-- End Left Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+<!-- End Page Container -->
+</div>
+<br>
+
+
+<footer class="w3-container w3-indigo w3-bottom">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+ 
+<script src="clock.js"></script>
+<script src="../main.js"></script>
+
+</body>
+</html> 
