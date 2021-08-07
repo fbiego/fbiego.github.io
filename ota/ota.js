@@ -84,7 +84,7 @@ function handleNotifications(event){
 
   switch (value.getUint8(0)){
     case 0xAA: //transfer mode
-    textAlert.textContent += "mode: " + value.getUint8(1);
+    textAlert.textContent += "mode: " + (value.getUint8(1)==1;
       if (value.getUint8(1) == 1){
         for (let x = 0; x < fileParts; x++){
           let pr = Math.trunc((x/fileParts)*100) + '%';
@@ -191,6 +191,8 @@ async function connectDevice(device){
       await device.gatt.disconnect();
     });
 
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
+    textAlert.textContent = 'Connected';
 
 
   }
