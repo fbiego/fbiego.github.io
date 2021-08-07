@@ -122,9 +122,11 @@ function readFile(event){
     //console.log(e.target.result);
     let value = e.target.result;
     let arr = new Uint8Array(value);
+    var txt = "";
     for(let i = 0; i < arr.length; i++){
-      logs.innerText += ' ' + arr[i];
+      txt += ' ' + arr[i];
     }
+    logs.innerText = txt;
   };
   reader.onerror = function(e) {
     // error occurred
