@@ -94,7 +94,8 @@ function handleNotifications(event){
 
     break;
     case 0xF1: //next part
-
+      var next = value.getUint8(1)*256 + value.getUint8(2);
+      sendPart(next);
     break;
     case 0xF2: //complete, installing firmware
       textAlert.textContent = 'Transfer Complete';
