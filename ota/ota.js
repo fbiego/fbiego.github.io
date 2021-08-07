@@ -126,8 +126,8 @@ async function connectDevice(device){
 
     device.addEventListener('gattserverdisconnected', onDisconnected);
     const server = await device.gatt.connect();
-    const services = await server.getPrimaryServices();
-    const main = services.getPrimaryService(service_uuid);
+    //const services = await server.getPrimaryServices();
+    const main = await server.getPrimaryService(service_uuid);
     otaTX = await main.getCharacteristic(tx_uuid);
     otaRX = await main.getCharacteristic(rx_uuid);
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
