@@ -121,8 +121,9 @@ function readFile(event){
     // binary data
     //console.log(e.target.result);
     let value = e.target.result;
-    for(let i = 0; i < value.byteLength; i++){
-      logs.innerText += ' ' + value.getUint8(i).toString(16);
+    let arr = new Uint8Array(value);
+    for(let i = 0; i < arr.length; i++){
+      logs.innerText += ' ' + arr[i];
     }
   };
   reader.onerror = function(e) {
