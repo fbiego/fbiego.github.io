@@ -106,25 +106,28 @@ async function sendPart(pos){
     end = fileSize;
   }
   var parts = (end - start)/MTU;
-  for(const i = 0; i < parts; i++){
+  for(let i = 0; i < parts; i++){
     var toSend = [0xFB, i];
-    for (const y = 0; y < MTU; y++){
+    for (let y = 0; y < MTU; y++){
       toSend.push(otaData[(pos*PART)+(MTU*i)+y]);
     }
     let send = new Uint8Array(toSend);
     //await otaTX.writeValue(send);
+    logs.innerText += '\n[' + toHexString(send)+ ']';
   }
   if ((end-start)%MTU != 0){
     var rem = (end-start)%MTU;
     var toSend = [0xFB, parts];
-    for (const y = 0; y < rem; y++){
+    for (let y = 0; y < rem; y++){
       toSend.push(otaData[(pos*PART)+(MTU*parts)+y])
     }
     let send = new Uint8Array(toSend);
     //await otaTX.writeValue(send);
+    logs.innerText += '\n[' + toHexString(send)+ ']';
   }
   var update = new Uint8Array([0xFC, Math.trunc((end-start)/256), Math.trunc((end-start)%256), Math.trunc(pos/256), Math.trunc(pos/256)]);
   //await otaTX.writeValue(update);
+  logs.innerText += '\n[' + toHexString(update)+ ']';
 }
 
 async function startOta(){
@@ -134,8 +137,9 @@ async function startOta(){
   //logs.innerText += parts/256;
   var data = [0xFF, Math.trunc(parts/256), Math.trunc(parts%256), Math.trunc(MTU/256), Math.trunc(MTU%256)];
   var otaInfo = new Uint8Array(data);
-  logs.innerText += otaInfo;
+  //logs.innerText += toHexString(otaInfo);
 
+  sendPart(0);
 
 }
 
