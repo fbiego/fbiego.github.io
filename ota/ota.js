@@ -13,6 +13,9 @@ let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
 let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
 let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 
+
+var otaData = new Uint8Array();
+
 let options = {
   acceptAllDevices: true,
   optionalServices: [service_uuid]
@@ -136,13 +139,7 @@ function readFile(event){
   reader.onload = function(e) {
     // binary data
     //console.log(e.target.result);
-    let value = e.target.result;
-    let arr = new Uint8Array(value);
-    var txt = "";
-    for(let i = 0; i < arr.length; i++){
-      txt += ' ' + arr[i].toString(16);
-    }
-    logs.innerText = txt;
+    otaData = Uint8Array(e.target.result);
   };
   reader.onerror = function(e) {
     // error occurred
