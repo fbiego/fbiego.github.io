@@ -71,6 +71,22 @@ function handleNotifications(event){
   for(let i = 0; i < value.byteLength; i++){
     logs.innerText += ' ' + value.getUint8(i).toString(16);
   }
+
+  switch (value.getUint8(0)){
+    case 0xAA: //transfer mode
+
+    break;
+    case 0xF1: //next part
+
+    break;
+    case 0xF2: //complete, installing firmware
+
+    break;
+    case 0x0F: //ota result
+
+    break;
+  }
+
 }
 
 function onDisconnected(event) {
