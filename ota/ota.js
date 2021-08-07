@@ -11,11 +11,15 @@ let fileSelector = document.querySelector('#otaFile');
 let uploadButton = document.querySelector('#uploadButton');
 let progressBar = document.querySelector('#progressBar');
 
-let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
-let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
-let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
+const service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
+const tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
+const rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 
+const PART = 16000;
+const MTU = 500;
 
+var otaRX = new BluetoothRemoteGATTCharacteristic();
+var otaTX = new BluetoothRemoteGATTCharacteristic();
 var otaData = new Uint8Array();
 var fileSize = 0;
 
@@ -96,7 +100,14 @@ function handleNotifications(event){
 }
 
 function startOta(){
-  progressBar.setAttribute('style', 'width:90%');
+  //progressBar.setAttribute('style', 'width:90%');
+
+  var parts = Math.ceil(fileSize/PART);
+  //logs.innerText += parts/256;
+  var otaInfo = Uint8Array.of(0xFF, Math.trunc(parts/256), Math.trunc(parts%256), Math.trunc(MTU/256), Math.trunc(MTU%256));
+  logs.innerText += otaInfo;
+
+
 }
 
 
@@ -112,9 +123,13 @@ async function connectDevice(device){
 
   try {
 
+    otaDevice = device
+
     device.addEventListener('gattserverdisconnected', onDisconnected);
     const server = await device.gatt.connect();
     const services = await server.getPrimaryServices();
+    otaTX = await services.getCharacteristic(tx_uuid);
+    otaRX = await services.getCharacteristic(rx_uuid);
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
     disconnectButton.addEventListener('click',  async (evt) => {
       textAlert.textContent = 'Disconnecting...';
