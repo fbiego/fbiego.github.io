@@ -9,16 +9,11 @@ let serviceList = document.querySelector('#services');
 let logs = document.querySelector('#notifyLogs');
 let read = false;
 
-let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
-let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
-let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
-
-let filters = [{namePrefix: 'ESP'}];
 
 let options = {
-  //acceptAllDevices: true,
-  optionalServices: [service_uuid],
-  filters : filters
+  acceptAllDevices: true,
+  //optionalServices: [service_uuid],
+  //filters : filters
 };
 
 async function loadPaired(){
@@ -223,16 +218,7 @@ async function loadServices(services){
       serviceList.appendChild(button);
       const characteristics = await service.getCharacteristics();
       for (const ch of characteristics){
-        //srvs += ch.uuid + getSupportedProperties(ch) + "\r\n";
-        //var li = document.createElement('li');
-        // li.textContent = ch.uuid + ' ' + getSupportedProperties(ch);
-        // if (getSupportedProperties(ch).includes('NOTIFY', 0)){
-        //   ch.addEventListener('characteristicvaluechanged', handleNotifications);
-        //   //const desc = await ch.getDescriptors();
-        //   //li.innerText += '<br>Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
 
-          
-        // }
         var li = setProperties(ch);
         
         ul.appendChild(li);
