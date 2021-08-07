@@ -18,8 +18,7 @@ const rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 const PART = 16000;
 const MTU = 500;
 
-var otaRX = BluetoothRemoteGATTCharacteristic();
-var otaTX = BluetoothRemoteGATTCharacteristic();
+var otaRX, otaTX;
 var otaData = new Uint8Array();
 var fileSize = 0;
 
