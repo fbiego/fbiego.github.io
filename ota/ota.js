@@ -142,8 +142,7 @@ function readFile(event){
   textAlert.innerText = event.target.files[0].name + "\n" + event.target.files[0].size;
   var reader = new FileReader();
   reader.onload = function(e) {
-    // binary data
-    //console.log(e.target.result);
+    
     otaData = Uint8Array(e.target.result);
   };
   reader.onerror = function(e) {
