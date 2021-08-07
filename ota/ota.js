@@ -96,8 +96,9 @@ function handleNotifications(event){
 }
 
 function startOta(){
-
+  progressBar.setAttribute('style', 'width:90%');
 }
+
 
 function onDisconnected(event) {
   removeAllChildNodes(serviceList);
