@@ -74,7 +74,7 @@ async function scanDevice(){
 }
 
 
-function handleNotifications(event){
+async function handleNotifications(event){
   let value = event.target.value;
   //const hex = toHexString(value);
   // logs.innerText += '\n' + event.target.uuid + ': ' ;
@@ -87,12 +87,12 @@ function handleNotifications(event){
     //textAlert.textContent += "mode: " + (value.getUint8(1)==1);
       if (value.getUint8(1) == 1){
         for (let x = 0; x < fileParts; x++){
-          let pr = Math.trunc((x/fileParts)*100) + '%';
-          progressBar.style.width = pr;
-          sendPart(x);
+          //let pr = Math.trunc((x/fileParts)*100) + '%';
+          //progressBar.style.width = pr;
+          await sendPart(x);
         }
       } else {
-        sendPart(0);
+        await sendPart(0);
       }
 
     break;
@@ -100,7 +100,7 @@ function handleNotifications(event){
       var next = value.getUint8(1)*256 + value.getUint8(2);
       let pr = Math.trunc((next/fileParts)*100) + '%';
       progressBar.style.width = pr;
-      sendPart(next);
+      await sendPart(next);
     break;
     case 0xF2: //complete, installing firmware
       textAlert.textContent = 'Transfer Complete';
