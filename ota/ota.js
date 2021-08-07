@@ -24,7 +24,6 @@ var otaData = new Uint8Array();
 var fileSize = 0;
 
 let options = {
-  acceptAllDevices: true,
   optionalServices: [service_uuid]
 };
 
