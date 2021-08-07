@@ -115,7 +115,19 @@ function clearLogs(){
 }
 
 function readFile(event){
-  textAlert.textContent = event.target.files;
+  textAlert.innerText = event.target.files[0].name + "\n" + event.target.files[0].size;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    // binary data
+    //console.log(e.target.result);
+    logs.innerText = e.target.result;
+  };
+  reader.onerror = function(e) {
+    // error occurred
+    textAlert.innerText += 'Error : ' + e.type;
+  };
+  reader.readAsBinaryString(event.target.files[0]);
+
 }
 
 scanButton.addEventListener('click', scanDevice);
