@@ -15,7 +15,7 @@ const service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
 const tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
 const rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 
-const PART = 16000;
+const PART = 4500;
 const MTU = 18;
 
 var otaRX, otaTX;
@@ -84,15 +84,15 @@ function handleNotifications(event){
 
   switch (value.getUint8(0)){
     case 0xAA: //transfer mode
-    textAlert.textContent += "mode: " + (value.getUint8(1)==1);
+    //textAlert.textContent += "mode: " + (value.getUint8(1)==1);
       if (value.getUint8(1) == 1){
         for (let x = 0; x < fileParts; x++){
           let pr = Math.trunc((x/fileParts)*100) + '%';
           progressBar.style.width = pr;
-          //sendPart(x);
+          sendPart(x);
         }
       } else {
-        //sendPart(0);
+        sendPart(0);
       }
 
     break;
