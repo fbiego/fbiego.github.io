@@ -114,8 +114,8 @@ function clearLogs(){
   logs.textContent = "";
 }
 
-function readFile(){
-
+function readFile(event){
+  textAlert.textContent = event.target.files;
 }
 
 scanButton.addEventListener('click', scanDevice);
