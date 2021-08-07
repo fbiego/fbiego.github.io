@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>BLE Explorer</title>
+<title>ESP Clock</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -40,8 +40,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
          <h4>Paired Devices</h4>
          <ul class="w3-ul w3-hoverable w3-border w3-round" id="deviceList">
 		 </ul>
-		 <input id="serviceUUID" class="w3-input w3-border w3-round w3-margin-top" type="text" placeholder="enter any service uuid of the device">
-		 <button type="button" id="scanButton" class="w3-button w3-round w3-margin w3-text-white w3-blue">Pair New Device</button>
+		 <button type="button" id="scanButton" class="w3-button w3-round w3-margin w3-text-white w3-blue">Connect</button>
+		 <button type="button" id="disconnectButton" class="w3-button w3-round w3-margin w3-text-white w3-red w3-hide">Disconnect</button>
         </div>
       </div>
       <br>
@@ -56,16 +56,14 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <div id="Demo1" class="w3-hide w3-container">
             <ul class="w3-ul">
 				<li class="">
-					<div class="w3-bar">
-						<button class="w3-bar-item w3-btn w3-blue w3-round w3-right w3-margin-left">Read</button>
-						<button class="w3-bar-item w3-btn w3-blue w3-round w3-right w3-margin-left">Write</button>
-						<div class="w3-bar-item w3-right">
+						<button type="button" class="w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left">Read</button>
+						<button type="button" class="w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left">Write</button>
+						<div class="w3-bar-item w3-tiny w3-right">
 							<input class="w3-check" type="checkbox">
 							<label>Notify</label>
 						</div>
-						<span class="w3-large w3-bar-item"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Characteristic</span><br>
+						<span class="w3-large w3-bar-item w3-text-small">fb1e4002-54ae-4a28-9f74-dfccb248601d</span>
 						
-					</div>
 					<input class="w3-input w3-round w3-border" type="text">
 				</li>
 			</ul>
@@ -89,10 +87,10 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <!-- Alert Box -->
       <div class="w3-container w3-margin w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border wl">
 		<div class="w3-display-topright">
-			<span onclick="this.parentElement.style.display='none'" class="w3-button w3-blue">
+			<span onclick="copyLogs()" class="w3-button w3-blue">
 				<i class="fa fa-copy"></i>
 			</span>
-			<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red">
+			<span onclick="clearLogs()" class="w3-button w3-red">
 				<i class="fa fa-remove"></i>
 			</span>
 		</div>
@@ -115,7 +113,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
  
-<script src="explorer.js"></script>
+<script src="clock.js"></script>
 <script src="../main.js"></script>
 
 </body>
