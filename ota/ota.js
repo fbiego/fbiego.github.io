@@ -86,6 +86,8 @@ function handleNotifications(event){
     case 0xAA: //transfer mode
       if (value.getUint8(1) == 1){
         for (let x = 0; x < fileParts; x++){
+          let pr = Math.trunc((x/fileParts)*100) + '%';
+          progressBar.style.width = pr;
           sendPart(x);
         }
       } else {
@@ -95,6 +97,8 @@ function handleNotifications(event){
     break;
     case 0xF1: //next part
       var next = value.getUint8(1)*256 + value.getUint8(2);
+      let pr = Math.trunc((next/fileParts)*100) + '%';
+      progressBar.style.width = pr;
       sendPart(next);
     break;
     case 0xF2: //complete, installing firmware
@@ -122,8 +126,8 @@ async function sendPart(pos){
       toSend.push(otaData[(pos*PART)+(MTU*i)+y]);
     }
     let send = new Uint8Array(toSend);
-    //await otaTX.writeValue(send);
-    logs.innerText += '\n[' + toHexString(send)+ ']';
+    await otaTX.writeValue(send);
+    //logs.innerText += '\n[' + toHexString(send)+ ']';
   }
   if ((end-start)%MTU != 0){
     var rem = (end-start)%MTU;
@@ -132,25 +136,29 @@ async function sendPart(pos){
       toSend.push(otaData[(pos*PART)+(MTU*parts)+y])
     }
     let send = new Uint8Array(toSend);
-    //await otaTX.writeValue(send);
-    logs.innerText += '\n[' + toHexString(send)+ ']';
+    await otaTX.writeValue(send);
+    //logs.innerText += '\n[' + toHexString(send)+ ']';
   }
   var update = new Uint8Array([0xFC, Math.trunc((end-start)/256), Math.trunc((end-start)%256), Math.trunc(pos/256), Math.trunc(pos/256)]);
-  //await otaTX.writeValue(update);
-  logs.innerText += '\n[' + toHexString(update)+ ']';
+  await otaTX.writeValue(update);
+  //logs.innerText += '\n[' + toHexString(update)+ ']';
 }
 
 async function startOta(){
   //progressBar.setAttribute('style', 'width:90%');
+  
+
+  var clear = new Uint8Array([0xFD]);
+  await otaTX.writeValue(clear);
 
   var parts = Math.ceil(fileSize/PART);
   //logs.innerText += parts/256;
   fileParts = parts;
   var data = [0xFF, Math.trunc(parts/256), Math.trunc(parts%256), Math.trunc(MTU/256), Math.trunc(MTU%256)];
   var otaInfo = new Uint8Array(data);
-  //logs.innerText += toHexString(otaInfo);
 
-  sendPart(0);
+  await otaTX.writeValue(otaInfo);
+  uploadButton.className += " w3-hide";
 
 }
 
@@ -174,6 +182,8 @@ async function connectDevice(device){
     const main = await server.getPrimaryService(service_uuid);
     otaTX = await main.getCharacteristic(tx_uuid);
     otaRX = await main.getCharacteristic(rx_uuid);
+    otaRX.addEventListener('characteristicvaluechanged', handleNotifications);
+    otaRX.startNotifications();
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
     disconnectButton.addEventListener('click',  async (evt) => {
       textAlert.textContent = 'Disconnecting...';
