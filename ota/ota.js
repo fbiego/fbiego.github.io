@@ -7,7 +7,7 @@ let textAlert = document.querySelector('#outputText');
 let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
 let logs = document.querySelector('#notifyLogs');
-let read = false;
+let fileSelector = document.getElementById('otaFile');
 
 let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
 let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
@@ -51,9 +51,6 @@ async function scanDevice(){
   try {
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
     textAlert.textContent = 'Scanning...';
-    
-    
-
     const device = await navigator.bluetooth.requestDevice(options);
     
     connectDevice(device);
@@ -81,57 +78,8 @@ function onDisconnected(event) {
   disconnectButton.className += " w3-hide";
   textAlert.textContent = 'Disconnected';
   loadPaired();
-  // Object event.target is Bluetooth Device getting disconnected.
-  //log('> Bluetooth Device disconnected');
 }
 
-
-async function loadServices(services){
-  try {
-    removeAllChildNodes(serviceList);
-    for (const service of services){
-      const s_uuid = service.uuid;
-      var button = document.createElement("button");
-      button.setAttribute('class', 'w3-button w3-block w3-blue w3-left-align');
-      button.setAttribute('onclick', 'myFunction(\''+s_uuid+'\')');
-      button.textContent = s_uuid;
-
-      var demoDiv = document.createElement('div');
-      demoDiv.setAttribute('id', s_uuid);
-      demoDiv.setAttribute('class', 'w3-hide w3-container');
-      var ul = document.createElement('ul');
-      ul.setAttribute('class', 'w3-ul');
-
-      serviceList.appendChild(button);
-      const characteristics = await service.getCharacteristics();
-      for (const ch of characteristics){
-        //srvs += ch.uuid + getSupportedProperties(ch) + "\r\n";
-        //var li = document.createElement('li');
-        // li.textContent = ch.uuid + ' ' + getSupportedProperties(ch);
-        // if (getSupportedProperties(ch).includes('NOTIFY', 0)){
-        //   ch.addEventListener('characteristicvaluechanged', handleNotifications);
-        //   //const desc = await ch.getDescriptors();
-        //   //li.innerText += '<br>Descriptors: ' + desc.map(c => c.uuid).join('\n' + ' '.repeat(19));
-
-          
-        // }
-        //var li = setProperties(ch);
-        
-        //ul.appendChild(li);
-      }
-      demoDiv.appendChild(ul);
-      serviceList.appendChild(demoDiv);
-
-    }
-    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
-    textAlert.innerText = "";
-
-  }
-  catch (error){
-    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent = error;
-  }
-}
 
 async function connectDevice(device){
 
@@ -140,12 +88,13 @@ async function connectDevice(device){
     device.addEventListener('gattserverdisconnected', onDisconnected);
     const server = await device.gatt.connect();
     const services = await server.getPrimaryServices();
-    loadServices(services);
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
     disconnectButton.addEventListener('click',  async (evt) => {
       textAlert.textContent = 'Disconnecting...';
       await device.gatt.disconnect();
     });
+
+
 
   }
   catch (error){
@@ -165,4 +114,9 @@ function clearLogs(){
   logs.textContent = "";
 }
 
+function readFile(){
+
+}
+
 scanButton.addEventListener('click', scanDevice);
+fileSelector.addEventListener('change', readFile);
