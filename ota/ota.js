@@ -99,7 +99,7 @@ function handleNotifications(event){
 
 }
 
-function startOta(){
+async function startOta(){
   //progressBar.setAttribute('style', 'width:90%');
 
   var parts = Math.ceil(fileSize/PART);
