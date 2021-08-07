@@ -21,6 +21,7 @@ const MTU = 500;
 var otaRX, otaTX;
 var otaData = new Uint8Array();
 var fileSize = 0;
+var fileParts = 0;
 
 let options = {
   acceptAllDevices : true,
@@ -76,13 +77,20 @@ async function scanDevice(){
 function handleNotifications(event){
   let value = event.target.value;
   //const hex = toHexString(value);
-  logs.innerText += '\n' + event.target.uuid + ': ' ;
+  // logs.innerText += '\n' + event.target.uuid + ': ' ;
   for(let i = 0; i < value.byteLength; i++){
     logs.innerText += ' ' + value.getUint8(i).toString(16);
   }
 
   switch (value.getUint8(0)){
     case 0xAA: //transfer mode
+      if (value.getUint8(1) == 1){
+        for (let x = 0; x < fileParts; x++){
+          sendPart(x);
+        }
+      } else {
+        sendPart(0);
+      }
 
     break;
     case 0xF1: //next part
@@ -136,6 +144,7 @@ async function startOta(){
 
   var parts = Math.ceil(fileSize/PART);
   //logs.innerText += parts/256;
+  fileParts = parts;
   var data = [0xFF, Math.trunc(parts/256), Math.trunc(parts%256), Math.trunc(MTU/256), Math.trunc(MTU%256)];
   var otaInfo = new Uint8Array(data);
   //logs.innerText += toHexString(otaInfo);
