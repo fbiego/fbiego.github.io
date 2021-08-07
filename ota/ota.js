@@ -124,7 +124,7 @@ function readFile(event){
     let arr = new Uint8Array(value);
     var txt = "";
     for(let i = 0; i < arr.length; i++){
-      txt += ' ' + arr[i];
+      txt += ' ' + arr[i].toString(16);
     }
     logs.innerText = txt;
   };
