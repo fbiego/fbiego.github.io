@@ -120,13 +120,16 @@ function readFile(event){
   reader.onload = function(e) {
     // binary data
     //console.log(e.target.result);
-    logs.innerText = e.target.result;
+    let value = e.target.result;
+    for(let i = 0; i < value.byteLength; i++){
+      logs.innerText += ' ' + value.getUint8(i).toString(16);
+    }
   };
   reader.onerror = function(e) {
     // error occurred
     textAlert.innerText += 'Error : ' + e.type;
   };
-  reader.readAsBinaryString(event.target.files[0]);
+  reader.readAsArrayBuffer(event.target.files[0]);
 
 }
 
