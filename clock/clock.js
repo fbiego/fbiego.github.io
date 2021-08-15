@@ -360,11 +360,9 @@ function loadButtons(){
       tr = document.createElement("tr");
     }
     var td = document.createElement("td");
-    var btn = document.createElement("button");
-    btn.setAttribute('class', 'w3-button w3-round w3-padding-small w3-blue');
-    btn.setAttribute('onclick', 'sendCode()');
-    btn.innerText = x;
-    td.appendChild(btn);
+    td.setAttribute('class', 'w3-blue w3-hover-green');
+    td.setAttribute('onclick', 'sendCode()');
+    td.innerText = x;
     tr.appendChild(td);
     l++;
     if (l % 4 === 0){
