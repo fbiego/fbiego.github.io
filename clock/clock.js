@@ -341,7 +341,7 @@ function clearLogs(){
 async function sendCode(code){
   try {
     const data = fromHexString(code);
-    await characteristic.writeValue(data);
+    await clockTX.writeValue(data);
   } 
   catch (error){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
