@@ -334,7 +334,7 @@ function clearLogs(){
 }
 
 function loadButtons(){
-
+  var tr = document.createElement("tr");
   
 }
 
