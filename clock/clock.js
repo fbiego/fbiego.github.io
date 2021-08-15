@@ -62,16 +62,16 @@ buttons["Vol -"] = "1B011FEA05F";
 buttons["Vol +"] = "1B011FE609F";
 buttons["RPT"] = "1B011FE10EF";
 buttons["U/SD"] = "1B011FE906F";
-buttons["0"] = "1B011FEE01F";
-buttons["1"] = "1B011FE50AF";
-buttons["2"] = "1B011FED827";
-buttons["3"] = "1B011FEF807";
-buttons["4"] = "1B011FE30CF";
-buttons["5"] = "1B011FEB04F";
-buttons["6"] = "1B011FE708F";
-buttons["7"] = "1B011FE00FF";
-buttons["8"] = "1B011FEF00F";
-buttons["9"] = "1B011FE9867";
+buttons["K0"] = "1B011FEE01F";
+buttons["K1"] = "1B011FE50AF";
+buttons["K2"] = "1B011FED827";
+buttons["K3"] = "1B011FEF807";
+buttons["K4"] = "1B011FE30CF";
+buttons["K5"] = "1B011FEB04F";
+buttons["K6"] = "1B011FE708F";
+buttons["K7"] = "1B011FE00FF";
+buttons["K8"] = "1B011FEF00F";
+buttons["K9"] = "1B011FE9867";
 
 async function loadPaired(){
   try {
@@ -355,6 +355,7 @@ function loadButtons(){
   var l = 0;
   var tr;
   for (let x in buttons){
+    textAlert.textContent += x + '\n';
     if (l % 4 === 0){
       tr = document.createElement("tr");
     }
