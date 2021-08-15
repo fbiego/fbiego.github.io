@@ -16,6 +16,8 @@ let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 
 let filters = [{namePrefix: 'ESP'}];
 
+var otaRX, otaTX;
+
 let options = {
   //acceptAllDevices: true,
   optionalServices: [service_uuid],
