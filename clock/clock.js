@@ -362,7 +362,7 @@ function loadButtons(){
     }
     var td = document.createElement("td");
     td.setAttribute('class', 'w3-blue w3-hover-green w3-round');
-    td.setAttribute('onclick', 'sendCode()');
+    td.setAttribute('onclick', 'sendCode(\''+ buttons[x]+'\')');
     td.setAttribute('style', 'cursor:pointer');
     td.innerText = x;
     tr.appendChild(td);
