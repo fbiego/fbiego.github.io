@@ -360,7 +360,7 @@ function loadButtons(){
       tr = document.createElement("tr");
     }
     var td = document.createElement("td");
-    td.setAttribute('class', 'w3-blue w3-hover-green');
+    td.setAttribute('class', 'w3-blue w3-hover-green ');
     td.setAttribute('onclick', 'sendCode()');
     td.innerText = x;
     tr.appendChild(td);
@@ -368,6 +368,9 @@ function loadButtons(){
     if (l % 4 === 0){
       controlTable.appendChild(tr);
     }
+  }
+  if (l % 4 != 0){
+      controlTable.appendChild(tr);
   }
 
 }
