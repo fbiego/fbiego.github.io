@@ -355,13 +355,12 @@ function loadButtons(){
   var l = 0;
   var tr;
   for (let x in buttons){
-    textAlert.textContent += x + '\n';
     if (l % 4 === 0){
       tr = document.createElement("tr");
-      tr.setAttribute('class', 'w3-margin');
+      //tr.setAttribute('class', 'w3-margin');
     }
     var td = document.createElement("td");
-    td.setAttribute('class', 'w3-blue w3-hover-green w3-round');
+    td.setAttribute('class', 'w3-blue w3-hover-green');
     td.setAttribute('onclick', 'sendCode(\''+ buttons[x]+'\')');
     td.setAttribute('style', 'cursor:pointer');
     td.innerText = x;
