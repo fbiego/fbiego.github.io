@@ -350,7 +350,25 @@ async function sendCode(code){
 }
 
 function loadButtons(){
-  var tr = document.createElement("tr");
+  removeAllChildNodes(controlTable);
+  var l = 0;
+  var tr;
+  for (let x in buttons){
+    if (l % 4 === 0){
+      tr = document.createElement("tr");
+    }
+    var td = document.createElement("td");
+    var btn = document.createElement("button");
+    btn.setAttribute('class', 'w3-button w3-round w3-padding-small w3-blue');
+    btn.setAttribute('onclick', 'sendCode()');
+    btn.innerText = x;
+    td.appendChild(btn);
+    tr.appendChild(td);
+    l++;
+    if (l % 4 === 0){
+      controlTable.appendChild(tr);
+    }
+  }
 
 }
 
