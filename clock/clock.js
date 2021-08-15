@@ -333,4 +333,9 @@ function clearLogs(){
   logs.textContent = "";
 }
 
+function loadButtons(){
+
+  
+}
+
 scanButton.addEventListener('click', scanDevice);
