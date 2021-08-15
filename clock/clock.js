@@ -16,7 +16,7 @@ let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 
 let filters = [{namePrefix: 'ESP'}];
 
-var otaRX, otaTX;
+var clockRX, clockTX;
 
 let options = {
   //acceptAllDevices: true,
@@ -310,6 +310,9 @@ async function connectDevice(device){
     device.addEventListener('gattserverdisconnected', onDisconnected);
     const server = await device.gatt.connect();
     const services = await server.getPrimaryServices();
+    const main = await server.getPrimaryService(service_uuid);
+    clockTX = await main.getCharacteristic(tx_uuid);
+    clockRX = await main.getCharacteristic(rx_uuid);
     loadServices(services);
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
     disconnectButton.addEventListener('click',  async (evt) => {
