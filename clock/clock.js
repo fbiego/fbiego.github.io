@@ -75,7 +75,6 @@ buttons["K9"] = "1B0101FE9867";
 
 async function loadPaired(){
   try {
-    loadButtons();
     const devices = await navigator.bluetooth.getDevices();
     removeAllChildNodes(deviceList);
     for (const dev of devices){
@@ -320,6 +319,7 @@ async function connectDevice(device){
       textAlert.textContent = 'Disconnecting...';
       await device.gatt.disconnect();
     });
+    loadButtons();
 
   }
   catch (error){
@@ -339,7 +339,7 @@ function clearLogs(){
   logs.textContent = "";
 }
 
-async function sendCode(code){
+async function sendIRCode(code){
   try {
     const data = fromHexString(code);
     await clockTX.writeValue(data);
@@ -361,7 +361,7 @@ function loadButtons(){
     }
     var td = document.createElement("td");
     td.setAttribute('class', 'w3-blue w3-hover-green');
-    td.setAttribute('onclick', 'sendCode(\''+ buttons[x]+'\')');
+    td.setAttribute('onclick', 'sendIRCode(\''+ buttons[x]+'\')');
     td.setAttribute('style', 'cursor:pointer');
     td.innerText = x;
     tr.appendChild(td);
