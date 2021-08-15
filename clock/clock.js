@@ -75,6 +75,7 @@ buttons["9"] = "1B011FE9867";
 
 async function loadPaired(){
   try {
+    loadButtons();
     const devices = await navigator.bluetooth.getDevices();
     removeAllChildNodes(deviceList);
     for (const dev of devices){
