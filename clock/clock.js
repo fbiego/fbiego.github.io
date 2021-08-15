@@ -358,6 +358,7 @@ function loadButtons(){
     textAlert.textContent += x + '\n';
     if (l % 4 === 0){
       tr = document.createElement("tr");
+      tr.setAttribute('class', 'w3-padding');
     }
     var td = document.createElement("td");
     td.setAttribute('class', 'w3-blue w3-hover-green w3-round');
