@@ -360,7 +360,7 @@ function loadButtons(){
       tr = document.createElement("tr");
     }
     var td = document.createElement("td");
-    td.setAttribute('class', 'w3-blue w3-hover-green ');
+    td.setAttribute('class', 'w3-blue w3-hover-green w3-round');
     td.setAttribute('onclick', 'sendCode()');
     td.setAttribute('style', 'cursor:pointer');
     td.innerText = x;
