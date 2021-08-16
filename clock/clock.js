@@ -75,6 +75,7 @@ buttons["K9"] = "1B0101FE9867";
 
 async function loadPaired(){
   try {
+    loadButtons();
     const devices = await navigator.bluetooth.getDevices();
     removeAllChildNodes(deviceList);
     for (const dev of devices){
