@@ -8,6 +8,8 @@ let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
 let logs = document.querySelector('#notifyLogs');
 let controlTable = document.querySelector('#controlTable');
+let led1 = document.querySelector('#led1');
+let led2 = document.querySelector('#led2');
 let read = false;
 
 let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
@@ -277,10 +279,11 @@ function clearLogs(){
   logs.textContent = "";
 }
 
-async function sendIRCode(code){
+async function sendCode(code){
   try {
-    const data = fromHexString(code);
-    await clockTX.writeValue(data);
+  	logs.textContent = "Test ok"+ led1.value;
+  	//var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value]);
+    //await clockTX.writeValue(data);
   } 
   catch (error){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
@@ -289,4 +292,7 @@ async function sendIRCode(code){
 }
 
 
+
+led1.addEventListener('change', sendCode);
+led2.addEventListener('change', sendCode);
 scanButton.addEventListener('click', scanDevice);
