@@ -289,30 +289,5 @@ async function sendIRCode(code){
   }
 }
 
-function loadButtons(){
-  removeAllChildNodes(controlTable);
-  var l = 0;
-  var tr;
-  for (let x in buttons){
-    if (l % 4 === 0){
-      tr = document.createElement("tr");
-      //tr.setAttribute('class', 'w3-margin');
-    }
-    var td = document.createElement("td");
-    td.setAttribute('class', 'w3-blue w3-hover-green');
-    td.setAttribute('onclick', 'sendIRCode(\''+ buttons[x]+'\')');
-    td.setAttribute('style', 'cursor:pointer');
-    td.innerText = x;
-    tr.appendChild(td);
-    l++;
-    if (l % 4 === 0){
-      controlTable.appendChild(tr);
-    }
-  }
-  if (l % 4 != 0){
-      controlTable.appendChild(tr);
-  }
-
-}
 
 scanButton.addEventListener('click', scanDevice);
