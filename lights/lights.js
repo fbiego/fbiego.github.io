@@ -258,7 +258,6 @@ async function connectDevice(device){
       textAlert.textContent = 'Disconnecting...';
       await device.gatt.disconnect();
     });
-    loadButtons();
 
   }
   catch (error){
