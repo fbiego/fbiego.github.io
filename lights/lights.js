@@ -24,55 +24,6 @@ let options = {
   filters : filters
 };
 
-const buttons = [];
-buttons["ON"] = "1B01DB2410EF";
-buttons["OFF"] = "1B01DB24D827";
-buttons["B+"] = "1B01DB24C837";
-buttons["B-"] = "1B01DB2428D7";
-buttons["RED"] = "1B01DB24B847";
-buttons["YELLOW"] = "1B01DB24F807";
-buttons["LIME"] = "1B01DB2418E7";
-buttons["GREEN"] = "1B01DB247887";
-buttons["CYAN"] = "1B01DB2458A7";
-buttons["COBALT"] = "1B01DB240AF5";
-buttons["BLUE"] = "1B01DB2442BD";
-buttons["VIOLET"] = "1B01DB2412ED";
-buttons["PINK"] = "1B01DB24CA35";
-buttons["WHITE"] = "1B01DB2402FD";
-buttons["Speed +"] = "1B01DB246897";
-buttons["Speed -"] = "1B01DB24A857";
-buttons["Static"] = "1B01DB246A95";
-buttons["Fade"] = "1B01DB24AA55";
-buttons["Disco"] = "1B01DB242AD5";
-buttons["Chaser"] = "1B01DB243AC5";
-buttons["Scan"] = "1B01DB24B04F";
-buttons["M+"] = "1B01DB2448B7";
-buttons["B1"] = "1B01DB24E01F";
-buttons["B2"] = "1B01DB245AA5";
-buttons["B3"] = "1B01DB241AE5";
-buttons["B4"] = "1B01DB248A75";
-buttons["Power"] = "1B0101FE48B7";
-buttons["Mode"] = "1B0101FE58A7";
-buttons["Mute"] = "1B0101FE7887";
-buttons["Play/Pause"] = "1B0101FE807F";
-buttons["Previous"] = "1B0101FE40BF";
-buttons["Next"] = "1B0101FEC03F";
-buttons["Equalizer"] = "1B0101FE20DF";
-buttons["Vol -"] = "1B0101FEA05F";
-buttons["Vol +"] = "1B0101FE609F";
-buttons["RPT"] = "1B0101FE10EF";
-buttons["U/SD"] = "1B0101FE906F";
-buttons["K0"] = "1B0101FEE01F";
-buttons["K1"] = "1B0101FE50AF";
-buttons["K2"] = "1B0101FED827";
-buttons["K3"] = "1B0101FEF807";
-buttons["K4"] = "1B0101FE30CF";
-buttons["K5"] = "1B0101FEB04F";
-buttons["K6"] = "1B0101FE708F";
-buttons["K7"] = "1B0101FE00FF";
-buttons["K8"] = "1B0101FEF00F";
-buttons["K9"] = "1B0101FE9867";
-
 async function loadPaired(){
   try {
     const devices = await navigator.bluetooth.getDevices();
