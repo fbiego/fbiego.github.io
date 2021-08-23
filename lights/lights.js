@@ -281,8 +281,7 @@ function clearLogs(){
 
 async function sendCode(code){
   try {
-  	//logs.textContent = "Test ok"+ led1.value;
-  	var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value]);
+  	var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value, 0x00]);
     await clockTX.writeValue(data);
   } 
   catch (error){
