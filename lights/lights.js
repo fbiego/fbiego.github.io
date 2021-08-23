@@ -281,9 +281,9 @@ function clearLogs(){
 
 async function sendCode(code){
   try {
-  	logs.textContent = "Test ok"+ led1.value;
-  	//var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value]);
-    //await clockTX.writeValue(data);
+  	//logs.textContent = "Test ok"+ led1.value;
+  	var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value]);
+    await clockTX.writeValue(data);
   } 
   catch (error){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
