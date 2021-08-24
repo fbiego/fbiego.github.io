@@ -10,6 +10,7 @@ let logs = document.querySelector('#notifyLogs');
 let controlTable = document.querySelector('#controlTable');
 let led1 = document.querySelector('#led1');
 let led2 = document.querySelector('#led2');
+let servo = document.querySelector('#servo');
 let read = false;
 
 let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
@@ -252,7 +253,7 @@ function clearLogs(){
 
 async function sendCode(code){
   try {
-  	var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value, 0x00]);
+  	var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value, servo.value]);
     await clockTX.writeValue(data);
   } 
   catch (error){
@@ -265,4 +266,5 @@ async function sendCode(code){
 
 led1.addEventListener('change', sendCode);
 led2.addEventListener('change', sendCode);
+servo.addEventListener('change', sendCode);
 scanButton.addEventListener('click', scanDevice);
