@@ -89,6 +89,7 @@ function handleNotifications(event){
 function onDisconnected(event) {
   removeAllChildNodes(serviceList);
   disconnectButton.className += " w3-hide";
+  controls.className += " w3-hide";
   scanButton.className = scanButton.className.replace(" w3-hide", "");
   textAlert.textContent = 'Disconnected';
   deviceList.className = deviceList.className.replace(" w3-hide", "");
@@ -230,6 +231,7 @@ async function connectDevice(device){
     clockRX = await main.getCharacteristic(rx_uuid);
     loadServices(services);
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
+    controls.className = controls.className.replace(" w3-hide", "");
     scanButton.className += " w3-hide";
     disconnectButton.addEventListener('click',  async (evt) => {
       textAlert.textContent = 'Disconnecting...';
