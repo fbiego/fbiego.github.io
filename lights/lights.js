@@ -91,6 +91,7 @@ function onDisconnected(event) {
   disconnectButton.className += " w3-hide";
   scanButton.className = scanButton.className.replace(" w3-hide", "");
   textAlert.textContent = 'Disconnected';
+  deviceList.className = deviceList.className.replace(" w3-hide", "");
   loadPaired();
 }
 
@@ -235,7 +236,7 @@ async function connectDevice(device){
       await device.gatt.disconnect();
     });
     deviceName.textContent = device.name;
-
+    deviceList.className += " w3-hide";
 
   }
   catch (error){
