@@ -11,6 +11,7 @@ let controlTable = document.querySelector('#controlTable');
 let led1 = document.querySelector('#led1');
 let led2 = document.querySelector('#led2');
 let servo = document.querySelector('#servo');
+let deviceName = document.querySelector('#deviceName');
 let read = false;
 
 let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
@@ -30,6 +31,7 @@ let options = {
 async function loadPaired(){
   try {
     const devices = await navigator.bluetooth.getDevices();
+    deviceName.textContent = "Paired devices";
     removeAllChildNodes(deviceList);
     for (const dev of devices){
       var li = document.createElement("li");
@@ -232,6 +234,8 @@ async function connectDevice(device){
       textAlert.textContent = 'Disconnecting...';
       await device.gatt.disconnect();
     });
+    deviceName.textContent = device.name;
+
 
   }
   catch (error){
