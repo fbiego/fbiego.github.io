@@ -273,17 +273,17 @@ async function sendCode(code){
 
 async function toggle(){
   try {
-  	var l2 = 0;
-  	var s1 = 220;
+  	var l1 = 0;
+  	var s1 = 100;
   	onButton.textContent = "Turn on";
   	if (state){
-  		l2 = 200;
-  		s1 = 100;
+  		l1 = 200;
+  		s1 = 220;
   		onButton.textContent = "Turn off";
   	}
   	state = !state;
-  	led2.value = l2;
-  	servo.value = s2;
+  	led1.value = l1;
+  	servo.value = s1;
 
   	var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value, 320-servo.value]);
     await clockTX.writeValue(data);
