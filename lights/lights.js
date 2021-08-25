@@ -12,7 +12,9 @@ let led1 = document.querySelector('#led1');
 let led2 = document.querySelector('#led2');
 let servo = document.querySelector('#servo');
 let deviceName = document.querySelector('#deviceName');
+let onButton = document.querySelector('#onButton');
 let read = false;
+var state = false;
 
 let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
 let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
@@ -259,6 +261,17 @@ function clearLogs(){
 }
 
 async function sendCode(code){
+  try {
+  	var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value, 320-servo.value]);
+    await clockTX.writeValue(data);
+  } 
+  catch (error){
+    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
+    textAlert.textContent = error;
+  }
+}
+
+async function toggle(){
   try {
   	var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value, 320-servo.value]);
     await clockTX.writeValue(data);
