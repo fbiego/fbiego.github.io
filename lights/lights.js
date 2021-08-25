@@ -14,7 +14,7 @@ let servo = document.querySelector('#servo');
 let deviceName = document.querySelector('#deviceName');
 let onButton = document.querySelector('#onButton');
 let read = false;
-var state = false;
+var state = true;
 
 let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
 let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
