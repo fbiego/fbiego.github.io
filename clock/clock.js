@@ -159,6 +159,11 @@ function handleNotifications(event){
   for(let i = 0; i < value.byteLength; i++){
     logs.innerText += ' ' + value.getUint8(i).toString(16);
   }
+  switch (value.getUint8(0)){
+    case 0xB0: //
+      
+    break;
+  }
 }
 
 function onDisconnected(event) {
