@@ -164,7 +164,7 @@ function handleNotifications(event){
       var tr = document.createElement("tr");
       var td = document.createElement("td");
       var td1 = document.createElement("td");
-      var date = value.getUint8(1) + " " + value.getUint8(2) + ":" + value.getUint8(3);
+      var date = value.getUint8(1) + " " + value.getUint8(2) + ":" + (value.getUint8(3) * 5);
       var bat = (value.getUint8(4) * 100) + + " " + value.getUint8(5);
       td.innerText = date;
       td1.innerText = bat;
