@@ -8,6 +8,7 @@ let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
 let logs = document.querySelector('#notifyLogs');
 let controlTable = document.querySelector('#controlTable');
+let batteryTable = document.querySelector('#batteryTable');
 let read = false;
 
 let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
