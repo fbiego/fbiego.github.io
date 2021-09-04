@@ -161,7 +161,7 @@ function handleNotifications(event){
   }
   switch (value.getUint8(0)){
     case 0xB0: //
-      
+
     break;
   }
 }
@@ -333,7 +333,7 @@ function clearLogs(){
   logs.textContent = "";
 }
 
-async function sendIRCode(code){
+async function sendCode(code){
   try {
     const data = fromHexString(code);
     await clockTX.writeValue(data);
@@ -355,7 +355,7 @@ function loadButtons(){
     }
     var td = document.createElement("td");
     td.setAttribute('class', 'w3-blue w3-hover-green');
-    td.setAttribute('onclick', 'sendIRCode(\''+ buttons[x]+'\')');
+    td.setAttribute('onclick', 'sendCode(\''+ buttons[x]+'\')');
     td.setAttribute('style', 'cursor:pointer');
     td.innerText = x;
     tr.appendChild(td);
