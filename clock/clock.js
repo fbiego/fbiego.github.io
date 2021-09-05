@@ -166,8 +166,8 @@ function handleNotifications(event){
       var td1 = document.createElement("td");
       var td2 = document.createElement("td");
       td.innerText = value.getUint8(1) + " " + value.getUint8(2) + ":" + value.getUint8(3);
-      td1.innerText = (value.getUint8(4) * 100) + + " " + value.getUint8(5);
-      td2.innerText = (value.getUint8(6) * 100) + + " " + value.getUint8(7);
+      td1.innerText = (value.getUint8(4) * 100) + " " + value.getUint8(5);
+      td2.innerText = (value.getUint8(6) * 100) + " " + value.getUint8(7);
       tr.appendChild(td);
       tr.appendChild(td1);
       tr.appendChild(td2);
