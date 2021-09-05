@@ -160,16 +160,17 @@ function handleNotifications(event){
     logs.innerText += ' ' + value.getUint8(i).toString(16);
   }
   switch (value.getUint8(0)){
-    case 0xB0: //
+    case 0xBA: //
       var tr = document.createElement("tr");
       var td = document.createElement("td");
       var td1 = document.createElement("td");
-      var date = value.getUint8(1) + " " + value.getUint8(2) + ":" + (value.getUint8(3) * 5);
-      var bat = (value.getUint8(4) * 100) + + " " + value.getUint8(5);
-      td.innerText = date;
-      td1.innerText = bat;
+      var td2 = document.createElement("td");
+      td.innerText = value.getUint8(1) + " " + value.getUint8(2) + ":" + value.getUint8(3);
+      td1.innerText = (value.getUint8(4) * 100) + + " " + value.getUint8(5);
+      td2.innerText = (value.getUint8(6) * 100) + + " " + value.getUint8(7);
       tr.appendChild(td);
       tr.appendChild(td1);
+      tr.appendChild(td2);
       batteryTable.appendChild(tr);
 
     break;
