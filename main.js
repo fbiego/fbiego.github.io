@@ -14,10 +14,10 @@ async function checkBLE(){
     const available = await navigator.bluetooth.getAvailability();
 
     if (available){
-      cardCheck.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-green');
+      cardCheck.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-green');
       textCheck.textContent = 'Web BLE is supported';
     } else {
-      cardCheck.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
+      cardCheck.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-red');
       textCheck.textContent = 'Web BLE is not supported';
     }
 
