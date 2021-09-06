@@ -116,7 +116,6 @@ async function connectDevice(device){
     const main = await server.getPrimaryService(service_uuid);
     clockTX = await main.getCharacteristic(tx_uuid);
     clockRX = await main.getCharacteristic(rx_uuid);
-    loadServices(services);
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
     scanButton.className += " w3-hide";
     disconnectButton.addEventListener('click',  async (evt) => {
