@@ -6,7 +6,6 @@ let deviceList = document.querySelector('#deviceList');
 let textAlert = document.querySelector('#outputText');
 let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
-let logs = document.querySelector('#notifyLogs');
 let deviceName = document.querySelector('#deviceName');
 let logsTable = document.querySelector('#logsTable');
 let read = false;
@@ -78,10 +77,6 @@ async function scanDevice(){
 function handleNotifications(event){
   let value = event.target.value;
   //const hex = toHexString(value);
-  logs.innerText += '\n' + event.target.uuid + ': ' ;
-  for(let i = 0; i < value.byteLength; i++){
-    logs.innerText += ' ' + value.getUint8(i).toString(16);
-  }
   switch (value.getUint8(0)){
     case 0xBA: //
       var tr = document.createElement("tr");
