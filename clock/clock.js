@@ -18,6 +18,7 @@ let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
 let filters = [{namePrefix: 'ESP'}];
 
 var clockRX, clockTX;
+var logData;
 
 let options = {
   //acceptAllDevices: true,
@@ -165,13 +166,17 @@ function handleNotifications(event){
       var td = document.createElement("td");
       var td1 = document.createElement("td");
       var td2 = document.createElement("td");
-      td.innerText = value.getUint8(1) + " " + value.getUint8(2) + ":" + value.getUint8(3);
-      td1.innerText = (value.getUint8(4) * 100) + " " + value.getUint8(5);
-      td2.innerText = (value.getUint8(6) * 100) + " " + value.getUint8(7);
+      var date = value.getUint8(1) + "," + value.getUint8(2) + ":" + value.getUint8(3);
+      var bat = (value.getUint8(4) * 100) + value.getUint8(5);
+      var ldr = (value.getUint8(6) * 100) + value.getUint8(7);
+      td.innerText = date;
+      td1.innerText = bat;
+      td2.innerText = ldr;
       tr.appendChild(td);
       tr.appendChild(td1);
       tr.appendChild(td2);
       batteryTable.appendChild(tr);
+      logData += date + "," + bat + "," + ldr + "\n";
 
     break;
   }
@@ -395,7 +400,7 @@ function download(filename, text) {
 
 function saveData(){
   // Start file download.
-  download("data.csv","This is the content of my file :)");
+  download("data.csv", logData);
 }
 
 scanButton.addEventListener('click', scanDevice);
