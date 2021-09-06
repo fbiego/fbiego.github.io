@@ -140,7 +140,6 @@ function setProperties(characteristic) {
           button.addEventListener('click', async (evt) => {
             const value = await characteristic.readValue();
             const read = toHexString(value);
-            logs.innerText += '\n' + characteristic.uuid + ': ' + read;
 
           });
           li.appendChild(button);
@@ -256,15 +255,6 @@ async function connectDevice(device){
 
 }
 
-function copyLogs(){
-  const text = logs.textContent;
-  navigator.clipboard.writeText(text);
-
-}
-
-function clearLogs(){
-  logs.textContent = "";
-}
 
 async function sendCode(code){
   try {
