@@ -8,6 +8,7 @@ let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
 let logs = document.querySelector('#notifyLogs');
 let deviceName = document.querySelector('#deviceName');
+let logsTable = document.querySelector('#logsTable');
 let read = false;
 var state = true;
 
