@@ -7,12 +7,7 @@ let textAlert = document.querySelector('#outputText');
 let cardAlert = document.querySelector('#outputCard');
 let serviceList = document.querySelector('#services');
 let logs = document.querySelector('#notifyLogs');
-let controls = document.querySelector('#controls');
-let led1 = document.querySelector('#led1');
-let led2 = document.querySelector('#led2');
-let servo = document.querySelector('#servo');
 let deviceName = document.querySelector('#deviceName');
-let onButton = document.querySelector('#onButton');
 let read = false;
 var state = true;
 
