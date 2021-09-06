@@ -81,6 +81,23 @@ function handleNotifications(event){
   for(let i = 0; i < value.byteLength; i++){
     logs.innerText += ' ' + value.getUint8(i).toString(16);
   }
+  switch (value.getUint8(0)){
+    case 0xBA: //
+      var tr = document.createElement("tr");
+      var td = document.createElement("td");
+      var td1 = document.createElement("td");
+      var td2 = document.createElement("td");
+      td.innerText = value.getUint8(1) + " " + value.getUint8(2) + ":" + value.getUint8(3);
+      td1.innerText = (value.getUint8(4) * 100) + " " + value.getUint8(5);
+      td2.innerText = (value.getUint8(6) * 100) + " " + value.getUint8(7);
+      tr.appendChild(td);
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      logsTable.appendChild(tr);
+
+    break;
+  }
+
 }
 
 function onDisconnected(event) {
