@@ -260,44 +260,5 @@ function clearLogs(){
   logs.textContent = "";
 }
 
-async function sendCode(code){
-  try {
-  	var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value, 320-servo.value]);
-    await clockTX.writeValue(data);
-  } 
-  catch (error){
-    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent = error;
-  }
-}
 
-async function toggle(){
-  try {
-  	var l1 = 0;
-  	var s1 = 100;
-  	onButton.textContent = "Turn on";
-  	if (state){
-  		l1 = 200;
-  		s1 = 220;
-  		onButton.textContent = "Turn off";
-  	}
-  	state = !state;
-  	led1.value = l1;
-  	servo.value = s1;
-
-  	var data = new Uint8Array([0xCA, 0xFF, led1.value, led2.value, 320-servo.value]);
-    await clockTX.writeValue(data);
-  } 
-  catch (error){
-    cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
-    textAlert.textContent = error;
-  }
-}
-
-
-
-led1.addEventListener('change', sendCode);
-led2.addEventListener('change', sendCode);
-servo.addEventListener('change', sendCode);
 scanButton.addEventListener('click', scanDevice);
-onButton.addEventListener('click', toggle);
