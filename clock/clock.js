@@ -177,7 +177,6 @@ function handleNotifications(event){
       tr.appendChild(td2);
       batteryTable.appendChild(tr);
       logData += date + "," + bat + "," + ldr + "\n";
-
     break;
   }
 }
