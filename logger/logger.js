@@ -98,6 +98,7 @@ function handleNotifications(event){
     	var total = (value.getUint8(4) * 256 * 256) + (value.getUint8(5) * 256) + value.getUint8(6);
 
     	var percent = (used/total) * 100;
+    	usageText.innerText = "" + used + "/" + total + " : " + percent + "%";
 
     break;
   }
