@@ -93,6 +93,13 @@ function handleNotifications(event){
       logsTable.appendChild(tr);
 
     break;
+    case 0xDA:
+    	var used = (value.getUint8(1) * 256 * 256) + (value.getUint8(2) * 256) + value.getUint8(3);
+    	var total = (value.getUint8(4) * 256 * 256) + (value.getUint8(5) * 256) + value.getUint8(6);
+
+    	var percent = (used/total) * 100;
+
+    break;
   }
 
 }
