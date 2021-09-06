@@ -99,6 +99,8 @@ function handleNotifications(event){
 
     	var percent = ((used/total) * 100).toFixed();
     	usageText.innerText = "" + used + "/" + total + " : " + percent + "%";
+    	usageBar.style.width = percent + "%";
+
 
     break;
   }
