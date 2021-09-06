@@ -232,7 +232,6 @@ async function connectDevice(device){
     clockRX = await main.getCharacteristic(rx_uuid);
     loadServices(services);
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
-    controls.className = controls.className.replace(" w3-hide", "");
     scanButton.className += " w3-hide";
     disconnectButton.addEventListener('click',  async (evt) => {
       textAlert.textContent = 'Disconnecting...';
