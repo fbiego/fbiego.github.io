@@ -7,6 +7,8 @@ let textAlert = document.querySelector('#outputText');
 let cardAlert = document.querySelector('#outputCard');
 let deviceName = document.querySelector('#deviceName');
 let logsTable = document.querySelector('#logsTable');
+let usageBar = document.querySelector('#usageBar');
+let usageText = document.querySelector('#usageText');
 let read = false;
 var state = true;
 
