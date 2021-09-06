@@ -123,8 +123,8 @@ async function connectDevice(device){
     });
     deviceName.textContent = device.name;
     deviceList.className += " w3-hide";
+    clockRX.addEventListener('characteristicvaluechanged', handleNotifications);
     await clockRX.startNotifications();
-    clockRX.addEventListener('change', handleNotifications);
 
 
   }
