@@ -105,6 +105,9 @@ function handleNotifications(event){
 
     break;
     case 0xDB:
+    	var name = ;
+    	var size = ;
+    	var type = ;
 
 
     break;
