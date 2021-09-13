@@ -9,6 +9,7 @@ let deviceName = document.querySelector('#deviceName');
 let logsTable = document.querySelector('#logsTable');
 let usageBar = document.querySelector('#usageBar');
 let usageText = document.querySelector('#usageText');
+let fileList = document.querySelector('#fileList');
 let read = false;
 var state = true;
 
@@ -104,7 +105,7 @@ function handleNotifications(event){
 
     break;
     case 0xDB:
-    	
+
 
     break;
   }
