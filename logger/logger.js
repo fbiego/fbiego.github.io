@@ -156,7 +156,8 @@ async function connectDevice(device){
     clockRX.addEventListener('characteristicvaluechanged', handleNotifications);
     await clockRX.startNotifications();
 
-    sendCode('da');
+    await sendCode('da');
+    await sendCode('ff');
 
 
   }
