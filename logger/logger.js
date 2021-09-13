@@ -110,7 +110,7 @@ function handleNotifications(event){
     	for (let x = 0; x < len; x++){
     		dat.push(value.getUint8(6+x));
     	}
-    	var name = fromHexString(dat);
+    	var name = new TextDecoder().decode(dat);
     	var size = (value.getUint8(2) * 256 * 256) + (value.getUint8(3) * 256) + value.getUint8(4);
     	var type = value.getUint8(1);
     	var li = document.createElement("li");
@@ -130,6 +130,7 @@ function onDisconnected(event) {
   scanButton.className = scanButton.className.replace(" w3-hide", "");
   textAlert.textContent = 'Disconnected';
   deviceList.className = deviceList.className.replace(" w3-hide", "");
+  removeAllChildNodes(fileList);
   loadPaired();
 }
 
