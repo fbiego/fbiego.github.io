@@ -106,6 +106,10 @@ function handleNotifications(event){
     break;
     case 0xDB:
     	var len = value.getUint8(5);
+    	var dat = [];
+    	for (let x = 0; x < len; x++){
+    		dat.push(value.getUint8(6+x));
+    	}
     	var name = ;
     	var size = (value.getUint8(2) * 256 * 256) + (value.getUint8(3) * 256) + value.getUint8(4);
     	var type = value.getUint8(1);
