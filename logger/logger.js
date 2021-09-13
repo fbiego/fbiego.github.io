@@ -110,7 +110,7 @@ function handleNotifications(event){
     	for (let x = 0; x < len; x++){
     		dat.push(value.getUint8(6+x));
     	}
-    	var name = new TextDecoder().decode(dat);
+    	var name = new TextDecoder().decode(new Uint8Array(dat));
     	var size = (value.getUint8(2) * 256 * 256) + (value.getUint8(3) * 256) + value.getUint8(4);
     	var type = value.getUint8(1);
     	var li = document.createElement("li");
