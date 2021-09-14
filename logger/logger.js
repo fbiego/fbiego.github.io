@@ -217,7 +217,7 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
-function saveData(){
+function saveLogs(){
   // Start file download.
   download(logName.textContent, dataLogs.textContent);
 }
