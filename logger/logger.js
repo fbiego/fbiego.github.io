@@ -131,7 +131,7 @@ function handleNotifications(event){
     	span2.appendChild(down);
     	div.appendChild(span2);
     	div.appendChild(span);
-    	li.innerText = name + " : " + type + " = " + size;
+    	li.innerText = name + " (" + size + "bytes)";
     	li.appendChild(div);
     	fileList.appendChild(li);
 
