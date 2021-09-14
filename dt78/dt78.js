@@ -19,7 +19,7 @@ let service_uuid = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 let tx_uuid = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
 let rx_uuid = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
 
-let filters = [{namePrefix: 'ESP'}];
+let filters = [{namePrefix: 'Smart'}];
 
 var watchRX, watchTX;
 
