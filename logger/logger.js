@@ -116,6 +116,7 @@ function handleNotifications(event){
     	var li = document.createElement("li");
     	li.setAttribute("class", "w3-display-container");
     	var div = document.createElement("div");
+    	div.setAttribute("class", "w3-display-right");
     	li.innerText = name + ":" + type + " = " + size;
     	fileList.appendChild(li);
 
