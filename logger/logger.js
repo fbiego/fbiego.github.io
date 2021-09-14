@@ -11,6 +11,7 @@ let usageBar = document.querySelector('#usageBar');
 let usageText = document.querySelector('#usageText');
 let fileList = document.querySelector('#fileList');
 let dataLogs = document.querySelector('#dataLogs');
+let logName = document.querySelector('#logName');
 let read = false;
 var state = true;
 
@@ -92,7 +93,7 @@ function handleNotifications(event){
       tr.appendChild(td);
       tr.appendChild(td1);
       tr.appendChild(td2);
-      logsTable.appendChild(tr);
+      //logsTable.appendChild(tr);
 
     break;
     case 0xDA:
