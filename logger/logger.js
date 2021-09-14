@@ -191,8 +191,9 @@ async function sendCode(code){
 }
 
 function readLog(code, name){
-	sendCode(code);
 	logName.textContent = name + ".txt";
+	clearLogs();
+	sendCode(code);
 }
 
 function deleteLog(code){
