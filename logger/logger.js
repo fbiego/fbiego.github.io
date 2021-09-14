@@ -119,9 +119,15 @@ function handleNotifications(event){
     	div.setAttribute("class", "w3-display-right");
     	var span = document.createElement("span");
     	span.setAttribute("class", "w3-button w3-round");
+    	var down = document.createElement("i");
+    	down.setAttribute("class", "fa fa-download");
+    	var span2 = document.createElement("span");
+    	span.setAttribute("class", "w3-button w3-round");
     	var del = document.createElement("i");
     	del.setAttribute("class", "fa fa-trash");
     	span.appendChild(del);
+    	span2.appendChild(down);
+    	div.appendChild(span2);
     	div.appendChild(span);
     	li.innerText = name + " : " + type + " = " + size;
     	li.appendChild(div);
