@@ -153,7 +153,16 @@ async function connectDevice(device){
 }
 
 function sendNotification(message){
+  var len = message.length();
 
+  var bytes = [0xAB, 0x00, len+5, 0xFF, 0x80, 0x0A, 0x02];
+  var msg = new Uint8Array.from(message);
+  dataLogs.innerText += toHexStr(bytes);
+  dataLogs.innerText += toHexStr(msg);
+
+  if (len <= 12){
+
+  }
 }
 
 
@@ -197,7 +206,8 @@ function download(filename, text) {
 
 function saveLogs(){
   // Start file download.
-  download(logName.innerText, dataLogs.innerText);
+  //download(logName.innerText, dataLogs.innerText);
+  sendNotification("test");
 }
 
 scanButton.addEventListener('click', scanDevice);
