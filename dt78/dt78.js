@@ -21,7 +21,7 @@ let rx_uuid = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
 
 let filters = [{namePrefix: 'ESP'}];
 
-var clockRX, clockTX;
+var watchRX, watchTX;
 
 let options = {
   //acceptAllDevices: true,
@@ -155,8 +155,8 @@ async function connectDevice(device){
     const server = await device.gatt.connect();
     const services = await server.getPrimaryServices();
     const main = await server.getPrimaryService(service_uuid);
-    clockTX = await main.getCharacteristic(tx_uuid);
-    clockRX = await main.getCharacteristic(rx_uuid);
+    watchTX = await main.getCharacteristic(tx_uuid);
+    watchRX = await main.getCharacteristic(rx_uuid);
     disconnectButton.className = disconnectButton.className.replace(" w3-hide", "");
     scanButton.className += " w3-hide";
     disconnectButton.addEventListener('click',  async (evt) => {
@@ -165,8 +165,8 @@ async function connectDevice(device){
     });
     deviceName.textContent = device.name;
     deviceList.className += " w3-hide";
-    clockRX.addEventListener('characteristicvaluechanged', handleNotifications);
-    await clockRX.startNotifications();
+    watchRX.addEventListener('characteristicvaluechanged', handleNotifications);
+    await watchRX.startNotifications();
 
     await sendCode('da');
 
@@ -182,7 +182,7 @@ async function connectDevice(device){
 async function sendCode(code){
   try {
     const data = fromHexString(code);
-    await clockTX.writeValue(data);
+    await watchTX.writeValue(data);
   } 
   catch (error){
     cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-red');
