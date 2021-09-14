@@ -15,9 +15,9 @@ let logName = document.querySelector('#logName');
 let read = false;
 var state = true;
 
-let service_uuid = 'fb1e4001-54ae-4a28-9f74-dfccb248601d';
-let tx_uuid = 'fb1e4002-54ae-4a28-9f74-dfccb248601d';
-let rx_uuid = 'fb1e4003-54ae-4a28-9f74-dfccb248601d';
+let service_uuid = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+let tx_uuid = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
+let rx_uuid = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
 
 let filters = [{namePrefix: 'ESP'}];
 
