@@ -117,7 +117,14 @@ function handleNotifications(event){
     	li.setAttribute("class", "w3-display-container");
     	var div = document.createElement("div");
     	div.setAttribute("class", "w3-display-right");
+    	var span = document.createElement("span");
+    	span.setAttribute("class", "w3-button w3-round");
+    	var del = document.createElement("i");
+    	del.setAttribute("class", "fa fa-trash");
+    	span.appendChild(del);
+    	div.appendChild(span);
     	li.innerText = name + ":" + type + " = " + size;
+    	li.appendChild(div);
     	fileList.appendChild(li);
 
 
