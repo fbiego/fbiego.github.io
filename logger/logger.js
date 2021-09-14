@@ -83,17 +83,10 @@ function handleNotifications(event){
   //const hex = toHexString(value);
   switch (value.getUint8(0)){
     case 0xBA: //
-      var tr = document.createElement("tr");
-      var td = document.createElement("td");
-      var td1 = document.createElement("td");
-      var td2 = document.createElement("td");
-      td.innerText = value.getUint8(1) + " " + value.getUint8(2) + ":" + value.getUint8(3);
-      td1.innerText = (value.getUint8(4) * 100) + value.getUint8(5);
-      td2.innerText = (value.getUint8(6) * 100) + value.getUint8(7);
-      tr.appendChild(td);
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      //logsTable.appendChild(tr);
+      var time = value.getUint8(1) + "\t" + value.getUint8(2) + ":" + value.getUint8(3);
+      var data1 =  (value.getUint8(4) * 100) + value.getUint8(5);
+      var data2 = (value.getUint8(6) * 100) + value.getUint8(7);
+      dataLogs.textContent += time + "\t" + data1 + "\t" +data2 + "\n";
 
     break;
     case 0xDA:
