@@ -166,8 +166,6 @@ async function connectDevice(device){
     await clockRX.startNotifications();
 
     await sendCode('da');
-    await sendCode('ff');
-
 
   }
   catch (error){
