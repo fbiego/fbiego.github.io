@@ -8,6 +8,9 @@ const fromHexString = hexString =>
 const toHexString = bytes =>
   bytes.reduce((str, byte) => str + byte.toString(16).padStart(5, ' 0x0'), '');
 
+const toHexStr = bytes =>
+  bytes.reduce((str, byte) => str + byte.toString(16).padStart(2, '0'), '');
+
 
 async function checkBLE(){
   try {
