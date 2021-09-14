@@ -80,8 +80,11 @@ async function scanDevice(){
 
 function handleNotifications(event){
   let value = event.target.value;
-  const hex = toHexString(value);
-  dataLogs.innerText += hex + "\n";
+  //const hex = toHexString(value);
+  for(let i = 0; i < value.byteLength; i++){
+    dataLogs.innerText += ' ' + value.getUint8(i).toString(16);
+  }
+  dataLogs.innerText += "\n";
   switch (value.getUint8(0)){
     case 0xBA: //
       var time = value.getUint8(1) + "\t" + value.getUint8(2) + ":" + value.getUint8(3);
