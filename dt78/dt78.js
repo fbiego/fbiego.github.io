@@ -156,9 +156,10 @@ function sendNotification(message){
   var len = message.length;
 
   var bytes = [0xAB, 0x00, len+5, 0xFF, 0x80, 0x0A, 0x02];
-  var msg = Uint8Array.from(message);
+  var msg = new TextEncoder().encode(message);
   dataLogs.innerText += toHexStr(bytes);
   dataLogs.innerText += toHexStr(msg);
+  await sendCode(toHexStr(bytes)+toHexStr(msg));
 
   if (len <= 12){
 
