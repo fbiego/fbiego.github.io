@@ -152,7 +152,7 @@ async function connectDevice(device){
 
 }
 
-function sendNotification(message){
+async function sendNotification(message){
   var len = message.length;
 
   var bytes = [0xAB, 0x00, len+5, 0xFF, 0x80, 0x0A, 0x02];
