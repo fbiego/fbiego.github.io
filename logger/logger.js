@@ -190,6 +190,14 @@ async function sendCode(code){
   }
 }
 
+function readLog(code){
+	sendCode(code);
+}
+
+function deleteLog(code){
+	sendCode(code);
+}
+
 function clearLogs(){
   dataLogs.textContent = "";
 }
