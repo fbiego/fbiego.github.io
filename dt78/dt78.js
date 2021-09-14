@@ -80,7 +80,8 @@ async function scanDevice(){
 
 function handleNotifications(event){
   let value = event.target.value;
-  //const hex = toHexString(value);
+  const hex = toHexString(value);
+  dataLogs.innerText += hex + "\n";
   switch (value.getUint8(0)){
     case 0xBA: //
       var time = value.getUint8(1) + "\t" + value.getUint8(2) + ":" + value.getUint8(3);
@@ -88,51 +89,7 @@ function handleNotifications(event){
       var data2 = (value.getUint8(6) * 100) + value.getUint8(7);
       dataLogs.innerText += time + "\t" + data1 + "\t" +data2 + "\n";
 
-    break;
-    case 0xDA:
-    	var used = (value.getUint8(1) * 256 * 256) + (value.getUint8(2) * 256) + value.getUint8(3);
-    	var total = (value.getUint8(4) * 256 * 256) + (value.getUint8(5) * 256) + value.getUint8(6);
-
-    	var percent = ((used/total) * 100).toFixed();
-    	usageText.innerText = "" + used + "/" + total + " : " + percent + "%";
-    	usageBar.style.width = percent + "%";
-
-
-    break;
-    case 0xDB:
-    	var len = value.getUint8(5);
-    	var dat = [];
-    	for (let x = 0; x < len; x++){
-    		dat.push(value.getUint8(6+x));
-    	}
-    	var name = new TextDecoder().decode(new Uint8Array(dat));
-    	var size = (value.getUint8(2) * 256 * 256) + (value.getUint8(3) * 256) + value.getUint8(4);
-    	var type = value.getUint8(1);
-    	var li = document.createElement("li");
-    	li.setAttribute("class", "w3-display-container");
-    	var div = document.createElement("div");
-    	div.setAttribute("class", "w3-display-right");
-    	var span = document.createElement("span");
-    	span.setAttribute("class", "w3-button w3-round");
-    	var down = document.createElement("i");
-    	down.setAttribute("class", "fa fa-download");
-    	var span2 = document.createElement("span");
-    	span2.setAttribute("class", "w3-button w3-round");
-    	span.setAttribute("onclick", "deleteLog('ba02"+toHexStr(dat) + "')");
-    	span2.setAttribute("onclick", "readLog('ba01"+toHexStr(dat) + "', '" + name + "')");
-    	var del = document.createElement("i");
-    	del.setAttribute("class", "fa fa-trash");
-    	span.appendChild(del);
-    	span2.appendChild(down);
-    	div.appendChild(span2);
-    	div.appendChild(span);
-    	li.innerText = name + " (" + size + "bytes)";
-    	li.appendChild(div);
-    	fileList.appendChild(li);
-
-
-    break;
-  }
+    break;  }
 
 }
 
