@@ -219,7 +219,7 @@ function download(filename, text) {
 
 function saveLogs(){
   // Start file download.
-  download(logName.textContent, dataLogs.textContent);
+  download(logName.innerText, dataLogs.innerText);
 }
 
 scanButton.addEventListener('click', scanDevice);
