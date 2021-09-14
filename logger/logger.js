@@ -86,7 +86,7 @@ function handleNotifications(event){
       var time = value.getUint8(1) + "\t" + value.getUint8(2) + ":" + value.getUint8(3);
       var data1 =  (value.getUint8(4) * 100) + value.getUint8(5);
       var data2 = (value.getUint8(6) * 100) + value.getUint8(7);
-      dataLogs.textContent += time + "\t" + data1 + "\t" +data2 + "\n";
+      dataLogs.innerText += time + "\t" + data1 + "\t" +data2 + "\n";
 
     break;
     case 0xDA:
