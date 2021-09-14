@@ -85,6 +85,17 @@ function handleNotifications(event){
     dataLogs.innerText += ' ' + value.getUint8(i).toString(16);
   }
   dataLogs.innerText += "\n";
+
+  if (value.getUint8(0) == 0xAB){
+    switch (value.getUint8(4)){
+      case 0x91:
+        var bat = value.getUint8(7);
+        var state = value.getUint8(6);
+        batteryBar.style.width = bat + "%";
+        batteryBar.innerText = bat + "%";
+      break;
+    }
+  }
   switch (value.getUint8(0)){
     case 0xBA: //
       var time = value.getUint8(1) + "\t" + value.getUint8(2) + ":" + value.getUint8(3);
@@ -92,7 +103,8 @@ function handleNotifications(event){
       var data2 = (value.getUint8(6) * 100) + value.getUint8(7);
       dataLogs.innerText += time + "\t" + data1 + "\t" +data2 + "\n";
 
-    break;  }
+    break;  
+  }
 
 }
 
