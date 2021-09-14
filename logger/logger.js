@@ -119,7 +119,7 @@ function handleNotifications(event){
     	var span2 = document.createElement("span");
     	span2.setAttribute("class", "w3-button w3-round");
     	span.setAttribute("onclick", "deleteLog('ba02"+toHexStr(dat) + "')");
-    	span2.setAttribute("onclick", "readLog('ba01"+toHexStr(dat) + "')");
+    	span2.setAttribute("onclick", "readLog('ba01"+toHexStr(dat) + "', '" + name + "')");
     	var del = document.createElement("i");
     	del.setAttribute("class", "fa fa-trash");
     	span.appendChild(del);
