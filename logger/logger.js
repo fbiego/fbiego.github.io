@@ -123,7 +123,7 @@ function handleNotifications(event){
     	del.setAttribute("class", "fa fa-trash");
     	span.appendChild(del);
     	div.appendChild(span);
-    	li.innerText = name + ":" + type + " = " + size;
+    	li.innerText = name + " : " + type + " = " + size;
     	li.appendChild(div);
     	fileList.appendChild(li);
 
