@@ -122,7 +122,8 @@ function handleNotifications(event){
     	var down = document.createElement("i");
     	down.setAttribute("class", "fa fa-download");
     	var span2 = document.createElement("span");
-    	span.setAttribute("class", "w3-button w3-round");
+    	span2.setAttribute("class", "w3-button w3-round");
+    	span2.setAttribute("onclick", "sendCode(ba00"+toHexString(dat) + ")");
     	var del = document.createElement("i");
     	del.setAttribute("class", "fa fa-trash");
     	span.appendChild(del);
