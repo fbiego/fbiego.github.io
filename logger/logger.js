@@ -190,8 +190,9 @@ async function sendCode(code){
   }
 }
 
-function readLog(code){
+function readLog(code, name){
 	sendCode(code);
+	logName.textContent = name + ".txt";
 }
 
 function deleteLog(code){
