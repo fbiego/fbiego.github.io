@@ -180,6 +180,11 @@ async function sendNotification(text){
       var by = [i];
       await sendCode(toHexStr(by)+toHexStr(msg1));
     }
+    if (rm != 0){
+      var msg1 = new TextEncoder().encode(message.substring(lp*19, len));
+      var by = [lp];
+      await sendCode(toHexStr(by)+toHexStr(msg1));
+    }
 
   }
 }
