@@ -157,6 +157,7 @@ async function sendNotification(text){
   var len = message.length;
   if (len > 125){
     message = text.substring(0, 125);
+    len = 125;
   }
 
   if (len <= 12){
