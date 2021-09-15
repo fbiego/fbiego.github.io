@@ -12,6 +12,8 @@ let usageText = document.querySelector('#usageText');
 let fileList = document.querySelector('#fileList');
 let dataLogs = document.querySelector('#dataLogs');
 let logName = document.querySelector('#logName');
+let sendBtn = document.querySelector('#sendBtn');
+let textMsg = document.querySelector('#message');
 let read = false;
 var state = true;
 
