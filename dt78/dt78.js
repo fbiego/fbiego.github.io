@@ -155,13 +155,11 @@ async function connectDevice(device){
 async function sendNotification(message){
   var len = message.length;
 
-  var bytes = [0xAB, 0x00, len+5, 0xFF, 0x72, 0x80, 0x0A, 0x02];
-  var msg = new TextEncoder().encode(message);
-  dataLogs.innerText += toHexStr(bytes);
-  dataLogs.innerText += toHexStr(msg);
-  await sendCode(toHexStr(bytes)+toHexStr(msg));
-
   if (len <= 12){
+    var bytes = [0xAB, 0x00, len+5, 0xFF, 0x72, 0x80, 0x0A, 0x02];
+    var msg = new TextEncoder().encode(message);
+    await sendCode(toHexStr(bytes)+toHexStr(msg));
+  } else {
 
   }
 }
