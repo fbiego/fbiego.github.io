@@ -174,14 +174,15 @@ async function sendNotification(text){
     var rem = len-12;
     var lp = rem/19;
     var rm = rem%19;
+    var sub = message.substring(12, len);
 
     for (let i = 0; i < lp; i++){
-      var msg1 = new TextEncoder().encode(message.substring(i*19, (i*19)+19));
+      var msg1 = new TextEncoder().encode(sub.substring(i*19, (i*19)+19));
       var by = [i];
       await sendCode(toHexStr(by)+toHexStr(msg1));
     }
     if (rm != 0){
-      var msg1 = new TextEncoder().encode(message.substring(lp*19, len));
+      var msg1 = new TextEncoder().encode(sub.substring(lp*19, sub.length));
       var by = [lp];
       await sendCode(toHexStr(by)+toHexStr(msg1));
     }
