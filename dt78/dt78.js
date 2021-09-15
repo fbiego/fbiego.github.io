@@ -204,7 +204,7 @@ function clearLogs(){
 function saveLogs(){
   // Start file download.
   //download(logName.innerText, dataLogs.innerText);
-  sendNotification("test");
+  sendNotification(textMsg.innerText);
 }
 
 scanButton.addEventListener('click', scanDevice);
