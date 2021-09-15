@@ -171,6 +171,16 @@ async function sendNotification(text){
     var bytes = [0xAB, 0x00, len+5, 0xFF, 0x72, 0x80, 0x0A, 0x02];
     await sendCode(toHexStr(bytes)+toHexStr(msg0));
 
+    var rem = len-12;
+    var lp = rem/19;
+    var rm = rem%19;
+
+    for (let i = 0; i < lp; i++){
+      var msg1 = new TextEncoder().encode(message.substring(i*19, (i*19)+19));
+      var by = [i];
+      await sendCode(toHexStr(by)+toHexStr(msg1));
+    }
+
   }
 }
 
