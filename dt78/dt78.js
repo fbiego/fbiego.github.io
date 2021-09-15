@@ -165,7 +165,9 @@ async function sendNotification(text){
     var msg = new TextEncoder().encode(message);
     await sendCode(toHexStr(bytes)+toHexStr(msg));
   } else {
-    var msg0 = message.substring(0, 12)
+    var msg0 = new TextEncoder().encode(message.substring(0, 12));
+    var bytes = [0xAB, 0x00, len+5, 0xFF, 0x72, 0x80, 0x0A, 0x02];
+    await sendCode(toHexStr(bytes)+toHexStr(msg0));
 
   }
 }
