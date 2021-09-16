@@ -80,21 +80,23 @@ async function loadPaired(){
     const devices = await navigator.bluetooth.getDevices();
     removeAllChildNodes(deviceList);
     for (const dev of devices){
-      var li = document.createElement("li");
-      li.appendChild(document.createTextNode(dev.name));
-      li.setAttribute('class', 'w3-hover-blue');
-      li.addEventListener('click', async function(){
-        this.setAttribute('class', 'w3-pale-blue');
-        cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
-        textAlert.textContent = 'Connecting to ' + dev.name;
-        let abortController = new AbortController();
-        await dev.watchAdvertisements({signal: abortController.signal});
-        dev.addEventListener('advertisementreceived', async (evt) => {
-          abortController.abort();
-          connectDevice(dev);
-        });
-      }, false);
-      deviceList.appendChild(li);
+      if (dev.name.startsWith("ESP")){
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(dev.name));
+        li.setAttribute('class', 'w3-hover-blue');
+        li.addEventListener('click', async function(){
+          this.setAttribute('class', 'w3-pale-blue');
+          cardAlert.setAttribute('class', 'w3-container w3-margin w3-display-container w3-round w3-border w3-theme-border wl w3-pale-blue');
+          textAlert.textContent = 'Connecting to ' + dev.name;
+          let abortController = new AbortController();
+          await dev.watchAdvertisements({signal: abortController.signal});
+          dev.addEventListener('advertisementreceived', async (evt) => {
+            abortController.abort();
+            connectDevice(dev);
+          });
+        }, false);
+        deviceList.appendChild(li);
+      }
 
     }
   }
