@@ -86,7 +86,6 @@ async function scanDevice(){
 // }
 
 function onDisconnected(event) {
-  removeAllChildNodes(serviceList);
   disconnectButton.className += " w3-hide";
   controls.className += " w3-hide";
   scanButton.className = scanButton.className.replace(" w3-hide", "");
