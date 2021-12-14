@@ -139,5 +139,3 @@ async function sendCode(code){
 
 
 scanButton.addEventListener('click', scanDevice);
-openButton.addEventListener('click', sendCode('A1'));
-closeButton.addEventListener('click', sendCode('A2'));
