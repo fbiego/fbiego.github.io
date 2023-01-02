@@ -28,7 +28,7 @@ var watchRX, watchTX;
 let options = {
   //acceptAllDevices: true,
   optionalServices: [service_uuid]
-  //filters : filters
+  filters : filters
 };
 
 async function loadPaired(){
