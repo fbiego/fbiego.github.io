@@ -93,7 +93,7 @@ function setProperties(characteristic) {
           var input = document.createElement("input");
           input.setAttribute('class', 'w3-check');
           input.setAttribute('type', 'checkbox');
-          input.setAttribute('id', characteristic.uuid);
+          input.setAttribute('id', 'ch-' + characteristic.uuid);
           input.setChecked = true;
           characteristic.startNotifications();
           input.addEventListener('change', function() {
@@ -127,7 +127,7 @@ function setProperties(characteristic) {
           button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
           button.textContent = 'Write';
           button.addEventListener('click', async (evt) => {
-            var text = document.querySelector('#'+characteristic.uuid).value;
+            var text = document.querySelector('#ch-'+characteristic.uuid).value;
             const data = fromHexString(text);
             //await characteristic.writeValueWithResponse(data);
             await characteristic.writeValue(data);
@@ -140,7 +140,7 @@ function setProperties(characteristic) {
           button.setAttribute('class', 'w3-bar-item w3-btn w3-blue w3-tiny w3-round w3-right w3-margin-left');
           button.textContent = 'Write NR';
           button.addEventListener('click', async (evt) => {
-            var text = document.querySelector('#'+characteristic.uuid).value;
+            var text = document.querySelector('#ch-'+characteristic.uuid).value;
             const data = fromHexString(text);
             //await characteristic.writeValueWithoutResponse(data);
             await characteristic.writeValue(data);
@@ -159,7 +159,7 @@ function setProperties(characteristic) {
     var input = document.createElement("input");
     input.setAttribute('class', 'w3-input w3-round w3-border');
     input.setAttribute('type', 'text');
-    input.setAttribute('id', characteristic.uuid);
+    input.setAttribute('id', 'ch-' + characteristic.uuid);
     li.appendChild(input);
   }
   characteristic.addEventListener('characteristicvaluechanged', handleNotifications);
