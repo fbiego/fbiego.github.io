@@ -9,10 +9,11 @@ let serviceList = document.querySelector('#services');
 let logs = document.querySelector('#notifyLogs');
 let read = false;
 
+let service_uuid = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 
 let options = {
   acceptAllDevices: true,
-  //optionalServices: [service_uuid],
+  optionalServices: [service_uuid]
   //filters : filters
 };
 
